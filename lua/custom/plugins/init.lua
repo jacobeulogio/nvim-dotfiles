@@ -4,5 +4,5 @@
 -- See the kickstart.nvim README for more information
 return {
 
-  {},
+  { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons' },
 }
