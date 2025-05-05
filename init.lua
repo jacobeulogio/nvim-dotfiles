@@ -1,63 +1,38 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = true
+-- vim.g.python3_host_prog = vim.fn.expand '/home/eulogio/miniconda3/envs/neovim/bin/python3'
 
+vim.g.have_nerd_font = true
 vim.opt.termguicolors = true
 
--- Use spaces instead of tabs
 vim.opt.expandtab = true
-
--- Number of spaces that a <Tab> counts for
 vim.opt.tabstop = 4
-
--- Number of spaces inserted for indentation commands (`>>`, `<<`, etc.)
 vim.opt.shiftwidth = 4
-
--- Number of spaces a tab feels like while editing
 vim.opt.softtabstop = 4
-
--- Enable smart indentation
 vim.opt.smartindent = true
-
--- Copy indent from current line when starting a new one
 vim.opt.autoindent = true
 
 vim.opt.number = true
 vim.opt.relativenumber = true
 
--- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
-
--- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
 vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
 end)
 
--- Enable break indent
 vim.opt.breakindent = true
-
--- Save undo history
 vim.opt.undofile = true
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-
--- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
 
--- Decrease update time
 vim.opt.updatetime = 250
-
--- Decrease mapped sequence wait time
 vim.opt.timeoutlen = 300
 
 -- Configure how new splits should be opened
@@ -165,29 +140,12 @@ require('lazy').setup({
     },
   },
 
-  -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
-  --
-  -- This is often very useful to both group configuration, as well as handle
-  -- lazy loading plugins that don't need to be loaded immediately at startup.
-  --
-  -- For example, in the following configuration, we use:
-  --  event = 'VimEnter'
-  --
-  -- which loads which-key before all the UI elements are loaded. Events can be
-  -- normal autocommands events (`:help autocmd-events`).
-  --
-  -- Then, because we use the `opts` key (recommended), the configuration runs
-  -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
-
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     opts = {
-      -- delay between pressing a key and opening which-key (milliseconds)
-      -- this setting is independent of vim.opt.timeoutlen
       delay = 0,
       icons = {
-        -- set icon mappings to true if you have a Nerd Font
         mappings = vim.g.have_nerd_font,
         -- If you are using a Nerd Font: set icons.keys to an empty table which will use the
         -- default which-key.nvim defined Nerd Font icons, otherwise define a string table
@@ -328,9 +286,6 @@ require('lazy').setup({
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     dependencies = {
-      -- Automatically install LSPs and related tools to stdpath for Neovim
-      -- Mason must be loaded before its dependents so we need to set it up here.
-      -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
       { 'williamboman/mason.nvim', opts = {} },
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
@@ -481,9 +436,6 @@ require('lazy').setup({
       --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-      -- Enable the following language servers
-      --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-      --
       --  Add any additional override configuration in the following tables. Available keys are:
       --  - cmd (table): Override the default command used to start the server
       --  - filetypes (table): Override the default list of associated filetypes for the server
@@ -523,19 +475,6 @@ require('lazy').setup({
         },
       }
 
-      -- Ensure the servers and tools above are installed
-      --
-      -- To check the current status of installed tools and/or manually install
-      -- other tools, you can run
-      --    :Mason
-      --
-      -- You can press `g?` for help in this menu.
-      --
-      -- `mason` had to be setup earlier: to configure its options see the
-      -- `dependencies` table for `nvim-lspconfig` above.
-      --
-      -- You can add other tools here that you want Mason to install
-      -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
@@ -543,14 +482,11 @@ require('lazy').setup({
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
-        ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+        ensure_installed = {},
         automatic_installation = false,
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
           end,
@@ -576,9 +512,6 @@ require('lazy').setup({
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
-        -- Disable "format_on_save lsp_fallback" for languages that don't
-        -- have a well standardized coding style. You can add additional
-        -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = { c = true, cpp = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
@@ -591,8 +524,7 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
+        python = { 'ruff' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
@@ -665,8 +597,6 @@ require('lazy').setup({
       },
 
       appearance = {
-        -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-        -- Adjusts spacing to ensure icons are aligned
         nerd_font_variant = 'mono',
       },
 
@@ -700,16 +630,12 @@ require('lazy').setup({
   },
 
   { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'aktersnurra/no-clown-fiesta.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+    priority = 1000,
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('no-clown-fiesta').setup {
-        transparent = false, -- Enable this to disable the bg color
+        transparent = false,
         styles = {
           -- You can set any of the style values specified for `:h nvim_set_hl`
           comments = {},
@@ -721,10 +647,6 @@ require('lazy').setup({
           variables = {},
         },
       }
-
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       vim.cmd.colorscheme 'no-clown-fiesta'
     end,
   },
@@ -785,9 +707,6 @@ require('lazy').setup({
       statusline.section_location = function()
         return '%2l:%-2v'
       end
-
-      -- ... and there is more!
-      --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
   { -- Highlight, edit, and navigate code
@@ -816,26 +735,13 @@ require('lazy').setup({
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
 
-  -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
-  -- init.lua. If you want these files, they are in the repository, so you can just download them and
-  -- place them in the correct locations.
-
-  -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
-  --
-  --  Here are some example plugins that I've included in the Kickstart repository.
-  --  Uncomment any of the lines below to enable them (you will need to restart nvim).
-  --
   require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
-  require 'kickstart.plugins.neo-tree',
+  -- require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    This is the easiest way to modularize your config.
-  --
-  --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
@@ -844,8 +750,6 @@ require('lazy').setup({
   -- you can continue same window with `<space>sr` which resumes last telescope search
 }, {
   ui = {
-    -- If you are using a Nerd Font: set icons to an empty table which will use the
-    -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
     icons = vim.g.have_nerd_font and {} or {
       cmd = '⌘',
       config = '🛠',
