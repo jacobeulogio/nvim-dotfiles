@@ -481,7 +481,7 @@ require('lazy').setup({
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('no-clown-fiesta').setup {
-        transparent = false,
+        transparent = true,
         styles = {
           -- You can set any of the style values specified for `:h nvim_set_hl`
           comments = {},
