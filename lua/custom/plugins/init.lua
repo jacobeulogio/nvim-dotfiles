@@ -1,14 +1,11 @@
--- You can add your own plugins here or in other files in this directory!
---  I promise not to create any merge conflicts in this directory :)
---
--- See the kickstart.nvim README for more information
 return {
 
   { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons' },
+  { 'akinsho/toggleterm.nvim', version = '*', config = true },
 
   -- {
   --   'benlubas/molten-nvim',
-  --   version = '^1.0.0', -- use version <2.0.0 to avoid breaking changes
+  --   version = '*', -- use version <2.0.0 to avoid breaking changes
   --   dependencies = { '3rd/image.nvim' },
   --   build = ':UpdateRemotePlugins',
   --   init = function()
@@ -39,4 +36,17 @@ return {
   --     window_overlap_clear_ft_ignore = { 'cmp_menu', 'cmp_docs', '' },
   --   },
   -- },
+
+  {
+    'rmagatti/auto-session',
+    lazy = false,
+
+    ---enables autocomplete for opts
+    ---@module "auto-session"
+    ---@type AutoSession.Config
+    opts = {
+      suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
+      -- log_level = 'debug',
+    },
+  },
 }

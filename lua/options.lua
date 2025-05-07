@@ -60,3 +60,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+-- molten.nvim
+vim.g.molten_auto_open_output = false
+vim.g.molten_output_win_style = 'minimal'
