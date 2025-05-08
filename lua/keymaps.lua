@@ -35,3 +35,27 @@ local trim_spaces = true
 vim.keymap.set('v', '<leader>r', function()
   require('toggleterm').send_lines_to_terminal('visual_selection', trim_spaces, { args = vim.v.count })
 end)
+
+local map = function(keys, func, desc, mode)
+  mode = mode or 'n'
+  vim.keymap.set(mode, keys, func, { desc = desc })
+end
+
+-- Create an autocommand group for netrw keymaps
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('user-netrw-keymaps', { clear = true }),
+  pattern = '*', -- Apply to all filetypes
+  callback = function()
+    -- Open netrw in the current window
+    map('<leader>ee', ':Explore<CR>', 'Open [E]xplorer in current window')
+
+    -- Open netrw in a vertical split
+    map('<leader>ev', ':Vexplore<CR>', 'Open [E]xplorer in [V]ertical split')
+
+    -- Open netrw in a horizontal split
+    map('<leader>eh', ':Sexplore<CR>', 'Open [E]xplorer in [H]orizontal split')
+
+    -- Open netrw in a new tab
+    map('<leader>et', ':Texplore<CR>', 'Open [E]xplorer in new [T]ab')
+  end,
+})
