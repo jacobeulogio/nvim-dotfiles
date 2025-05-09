@@ -9,6 +9,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Diagnostics
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+-- Exit Terminal with ESC-ESC
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
@@ -26,6 +27,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- Terminal Keymap
 vim.api.nvim_set_keymap('n', '\\', ':ToggleTerm size=60 direction=vertical <CR><C-\\><C-n>', { noremap = true, silent = true })
 
+-- Send lines to terminal
 local trim_spaces = true
 vim.keymap.set('v', '<leader>r', function()
   require('toggleterm').send_lines_to_terminal('visual_selection', trim_spaces, { args = vim.v.count })
@@ -36,21 +38,14 @@ local map = function(keys, func, desc, mode)
   vim.keymap.set(mode, keys, func, { desc = desc })
 end
 
--- Create an autocommand group for netrw keymaps
-vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('user-netrw-keymaps', { clear = true }),
-  pattern = '*', -- Apply to all filetypes
-  callback = function()
-    -- Open netrw in the current window
-    map('<leader>ee', ':Explore<CR>', 'Open [E]xplorer in current window')
-
-    -- Open netrw in a vertical split
-    map('<leader>ev', ':Vexplore<CR>', 'Open [E]xplorer in [V]ertical split')
-
-    -- Open netrw in a horizontal split
-    map('<leader>eh', ':Sexplore<CR>', 'Open [E]xplorer in [H]orizontal split')
-
-    -- Open netrw in a new tab
-    map('<leader>et', ':Texplore<CR>', 'Open [E]xplorer in new [T]ab')
-  end,
-})
+-- -- Create an autocommand group for netrw keymaps
+-- vim.api.nvim_create_autocmd('FileType', {
+--   group = vim.api.nvim_create_augroup('user-netrw-keymaps', { clear = true }),
+--   pattern = '*', -- Apply to all filetypes
+--   callback = function()
+--     map('<leader>ee', ':Explore<CR>', 'Open [E]xplorer in current window')
+--     map('<leader>ev', ':Vexplore<CR>', 'Open [E]xplorer in [V]ertical split')
+--     map('<leader>eh', ':Sexplore<CR>', 'Open [E]xplorer in [H]orizontal split')
+--     map('<leader>et', ':Texplore<CR>', 'Open [E]xplorer in new [T]ab')
+--   end,
+-- })

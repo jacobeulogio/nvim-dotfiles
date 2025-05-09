@@ -40,19 +40,8 @@ return {
     lazy = false,
     opts = {
       file_manager = 'yazi',
-      -- Replace netrw entirely
-      -- Default: false
       replace_netrw = true,
-      -- Enable creation of commands
-      -- Default: false
-      -- Commands:
-      --   Tfm: selected file(s) will be opened in the current window
-      --   TfmSplit: selected file(s) will be opened in a horizontal split
-      --   TfmVsplit: selected file(s) will be opened in a vertical split
-      --   TfmTabedit: selected file(s) will be opened in a new tab page
-      enable_cmds = false,
-      -- Custom keybindings only applied within the TFM buffer
-      -- Default: {}
+      enable_cmds = true,
       keybindings = {
         ['<ESC>'] = 'q',
         -- Override the open mode (i.e. vertical/horizontal split, new tab)
