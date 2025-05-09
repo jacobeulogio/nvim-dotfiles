@@ -2,7 +2,6 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.g.python3_host_prog = vim.fn.expand '~/.virtualenvs/neovim/bin/python3'
-
 vim.g.have_nerd_font = true
 
 require 'options'
@@ -55,12 +54,13 @@ require('lazy').setup({
     },
   },
 
-  { -- Fuzzy Finder (files, lsp, etc)
+  -- Fuzzy Finder (files, lsp, etc)
+  {
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      { -- If encountering errors, see telescope-fzf-native README for installation instructions
+      {
         'nvim-telescope/telescope-fzf-native.nvim',
         build = 'make',
         cond = function()
@@ -72,36 +72,36 @@ require('lazy').setup({
     },
     config = function()
       local actions = require 'telescope.actions'
+      local themes = require 'telescope.themes'
+      local builtin = require 'telescope.builtin'
 
       require('telescope').setup {
         defaults = {
           mappings = {
-
             i = {
-              -- ['<c-enter>'] = 'to_fuzzy_refine'
               ['<c-d>'] = actions.delete_buffer,
               ['<C-c>'] = function(prompt_bufnr)
                 vim.cmd 'stopinsert'
               end,
             },
-
             n = {
               ['<c-d>'] = actions.delete_buffer,
+              ['o'] = actions.select_default,
             },
           },
         },
-        -- pickers = {}
         extensions = {
           ['ui-select'] = {
-            require('telescope.themes').get_dropdown(),
+            theme = themes.get_dropdown(),
           },
         },
       }
 
+      -- Load telescope extensions
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
 
-      local builtin = require 'telescope.builtin'
+      -- Key mappings
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
@@ -114,7 +114,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
       vim.keymap.set('n', '<leader>/', function()
-        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+        builtin.current_buffer_fuzzy_find(themes.get_dropdown {
           winblend = 10,
           previewer = false,
         })
@@ -132,7 +132,6 @@ require('lazy').setup({
       end, { desc = '[S]earch [N]eovim files' })
     end,
   },
-
   -- LSP Plugins
   {
     'folke/lazydev.nvim',
@@ -162,11 +161,6 @@ require('lazy').setup({
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
-          -- NOTE: Remember that Lua is a real programming language, and as such it is possible
-          -- to define small helper and utility functions so you don't have to repeat yourself.
-          --
-          -- In this case, we create a function that lets us more easily define mappings specific
-          -- for LSP related items. It sets the mode, buffer and description for us each time.
           local map = function(keys, func, desc, mode)
             mode = mode or 'n'
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
@@ -289,51 +283,36 @@ require('lazy').setup({
 
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-      --  Add any additional override configuration in the following tables. Available keys are:
-      --  - cmd (table): Override the default command used to start the server
-      --  - filetypes (table): Override the default list of associated filetypes for the server
-      --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-      --  - settings (table): Override the default settings passed when initializing the server.
-      --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         ruff = {},
-        pylsp = {
-          settings = {
-            pylsp = {
-              plugins = {
-                -- Disable pylsp's built-in linters to avoid conflicts with ruff
-                pycodestyle = { enabled = false },
-                flake8 = { enabled = false },
-                pyflakes = { enabled = false },
-                mccabe = { enabled = false },
-                pylint = { enabled = false },
-                autopep8 = { enabled = false },
-                yapf = { enabled = false },
-                -- Enable ruff as the linter
-                ruff = {
-                  enabled = true,
-                  lineLength = 88, -- Matches ruff's default
-                },
-                -- Enable other pylsp features like autocompletion and formatting
-                jedi_completion = { enabled = true },
-                jedi_definition = { enabled = true },
-                jedi_references = { enabled = true },
-                jedi_signature_help = { enabled = true },
-                jedi_symbols = { enabled = true },
-              },
-            },
-          },
-        },
+        -- pylsp = {
+        --   settings = {
+        --     pylsp = {
+        --       plugins = {
+        --         ruff = {
+        --           enabled = true,
+        --           lineLength = 88, -- Matches ruff's default
+        --         },
+        --         pycodestyle = { enabled = false, ignore = { 'E501' } },
+        --         flake8 = { enabled = false },
+        --         pyflakes = { enabled = false },
+        --         mccabe = { enabled = false },
+        --         pylint = { enabled = false },
+        --         autopep8 = { enabled = false },
+        --         yapf = { enabled = false },
+        --         jedi_completion = { enabled = true },
+        --         jedi_definition = { enabled = true },
+        --         jedi_references = { enabled = true },
+        --         jedi_signature_help = { enabled = true },
+        --         jedi_symbols = { enabled = true },
+        --       },
+        --     },
+        --   },
+        -- },
         lua_ls = {
-          -- cmd = { ... },
-          -- filetypes = { ... },
-          -- capabilities = {},
           settings = {
             Lua = {
-              completion = {
-                callSnippet = 'Replace',
-              },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+              completion = { callSnippet = 'Replace' },
               diagnostics = { disable = { 'missing-fields' } },
             },
           },
@@ -343,7 +322,6 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
-        'python-lsp-server',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -451,12 +429,7 @@ require('lazy').setup({
         -- <c-n>/<c-p> or <up>/<down>: Select next/previous item
         -- <c-e>: Hide menu
         -- <c-k>: Toggle signature help
-        --
-        -- See :h blink-cmp-config-keymap for defining your own keymap
         preset = 'default',
-
-        -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
-        --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
       },
 
       appearance = {
@@ -464,8 +437,6 @@ require('lazy').setup({
       },
 
       completion = {
-        -- By default, you may press `<c-space>` to show the documentation.
-        -- Optionally, set `auto_show = true` to show the documentation after a delay.
         documentation = { auto_show = false, auto_show_delay_ms = 500 },
       },
 
@@ -477,41 +448,11 @@ require('lazy').setup({
       },
 
       snippets = { preset = 'luasnip' },
-
-      -- Blink.cmp includes an optional, recommended rust fuzzy matcher,
-      -- which automatically downloads a prebuilt binary when enabled.
-      --
-      -- By default, we use the Lua implementation instead, but you may enable
-      -- the rust implementation via `'prefer_rust_with_warning'`
-      --
-      -- See :h blink-cmp-config-fuzzy for more information
       fuzzy = { implementation = 'lua' },
 
       -- Shows a signature help window while you type arguments for a function
       signature = { enabled = true },
     },
-  },
-
-  { -- You can easily change to a different colorscheme.
-    'aktersnurra/no-clown-fiesta.nvim',
-    priority = 1000,
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('no-clown-fiesta').setup {
-        transparent = true,
-        styles = {
-          -- You can set any of the style values specified for `:h nvim_set_hl`
-          comments = {},
-          functions = {},
-          keywords = {},
-          lsp = {},
-          match_paren = {},
-          type = {},
-          variables = {},
-        },
-      }
-      vim.cmd.colorscheme 'no-clown-fiesta'
-    end,
   },
 
   -- Highlight todo, notes, etc in comments
@@ -554,7 +495,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'python' },
+      ensure_installed = { 'bash', 'c', 'toml', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'python' },
       auto_install = true,
       highlight = {
         enable = true,
@@ -562,22 +503,13 @@ require('lazy').setup({
       },
       indent = { enable = true, disable = { 'ruby' } },
     },
-    -- There are additional nvim-treesitter modules that you can use to interact
-    -- with nvim-treesitter. You should go explore a few and see what interests you:
-    --
-    --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-    --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-    --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
 
+  require 'colorscheme',
+  require 'plugins',
   require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
-  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
-
-  { import = 'custom.plugins' },
+  require 'kickstart.plugins.gitsigns',
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {

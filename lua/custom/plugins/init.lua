@@ -60,7 +60,7 @@ return {
       },
     },
     keys = {
-      { '<leader>ee', ':Tfm<CR>', desc = 'TFM' },
+      { '<leader>y', ':Tfm<CR>', desc = 'TFM' },
       -- { "<leader>eh", ":TfmSplit<CR>", desc = "TFM - horizontal split", },
       -- { "<leader>ev", ":TfmVsplit<CR>", desc = "TFM - vertical split", },
       -- { "<leader>et", ":TfmTabedit<CR>", desc = "TFM - new tab", },

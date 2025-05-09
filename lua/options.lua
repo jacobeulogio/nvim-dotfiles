@@ -64,3 +64,5 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- molten.nvim
 vim.g.molten_auto_open_output = false
 vim.g.molten_output_win_style = 'minimal'
+
+vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
