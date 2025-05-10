@@ -25,7 +25,7 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Terminal Keymap
-vim.api.nvim_set_keymap('n', '\\', ':ToggleTerm size=60 direction=vertical <CR><C-\\><C-n>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '\\', ':ToggleTerm size=80 direction=vertical <CR><C-\\><C-n>', { noremap = true, silent = true })
 
 -- Send lines to terminal
 local trim_spaces = true
