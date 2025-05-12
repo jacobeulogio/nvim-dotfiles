@@ -1,5 +1,17 @@
 return {
   {
+    'rebelot/kanagawa.nvim',
+    priority = 1001,
+    config = function()
+      require('kanagawa').setup {
+        transparent = true,
+        colors = {
+          theme = { all = { ui = { bg_gutter = 'none' } } },
+        },
+      }
+    end,
+  },
+  {
     'aktersnurra/no-clown-fiesta.nvim',
     priority = 1000,
     config = function()
@@ -7,17 +19,17 @@ return {
       require('no-clown-fiesta').setup {
         transparent = true,
         styles = {
-          -- You can set any of the style values specified for `:h nvim_set_hl`
           comments = {},
           functions = {},
           keywords = {},
           lsp = {},
           match_paren = {},
-          type = {},
           variables = {},
+          type = {},
         },
+        vim.cmd.colorscheme 'kanagawa-dragon',
+        -- vim.cmd.colorscheme 'no-clown-fiesta',
       }
-      vim.cmd.colorscheme 'no-clown-fiesta'
     end,
   },
 }
