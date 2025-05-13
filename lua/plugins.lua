@@ -62,7 +62,10 @@ return {
       }
     end,
   },
-
+  {
+    'brenoprata10/nvim-highlight-colors',
+    opts = {},
+  },
   -- {
   --   'rmagatti/auto-session',
   --   lazy = false,
