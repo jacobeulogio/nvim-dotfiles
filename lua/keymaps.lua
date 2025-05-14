@@ -49,4 +49,16 @@ end
 --     map('<leader>eh', ':Sexplore<CR>', 'Open [E]xplorer in [H]orizontal split')
 --     map('<leader>et', ':Texplore<CR>', 'Open [E]xplorer in new [T]ab')
 --   end,
--- })
+
+vim.g['diagnostics_active'] = true
+function Toggle_diagnostics()
+  if vim.g.diagnostics_active then
+    vim.g.diagnostics_active = false
+    vim.diagnostic.enable(false)
+  else
+    vim.g.diagnostics_active = true
+    vim.diagnostic.enable()
+  end
+end
+
+vim.keymap.set('n', '<leader>ud', Toggle_diagnostics, { noremap = true, silent = true, desc = 'Toggle vim diagnostics' })
