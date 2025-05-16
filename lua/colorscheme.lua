@@ -8,6 +8,9 @@ return {
         colors = {
           theme = { all = { ui = { bg_gutter = 'none' } } },
         },
+        commentStyle = { italic = false },
+        functionStyle = {},
+        keywordStyle = { italic = false },
       }
     end,
   },
