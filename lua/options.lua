@@ -62,3 +62,27 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+
+-- vim.lsp.config('pylsp', {
+--   settings = {
+--     pylsp = {
+--       plugins = {
+--         pycodestyle = { enabled = false },
+--         flake8 = { enabled = false },
+--         pyflakes = { enabled = false },
+--         mccabe = { enabled = false },
+--         pylint = { enabled = false },
+--         autopep8 = { enabled = false },
+--         yapf = { enabled = false },
+--         pylsp_mypy = { enabled = false },
+--         pylsp_black = { enabled = false },
+--         pylsp_isort = { enabled = false },
+--         jedi_completion = { enabled = true },
+--         jedi_definition = { enabled = true },
+--         jedi_references = { enabled = true },
+--         jedi_signature_help = { enabled = true },
+--         jedi_symbols = { enabled = true },
+--       },
+--     },
+--   },
+-- })

@@ -120,29 +120,8 @@ return {
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
       local servers = {
-        pylsp = {
-          settings = {
-            pylsp = {
-              plugins = {
-                pycodestyle = { enabled = false },
-                flake8 = { enabled = false },
-                pyflakes = { enabled = false },
-                mccabe = { enabled = false },
-                pylint = { enabled = false },
-                autopep8 = { enabled = false },
-                yapf = { enabled = false },
-                pylsp_mypy = { enabled = false },
-                pylsp_black = { enabled = false },
-                pylsp_isort = { enabled = false },
-                jedi_completion = { enabled = true },
-                jedi_definition = { enabled = true },
-                jedi_references = { enabled = true },
-                jedi_signature_help = { enabled = true },
-                jedi_symbols = { enabled = true },
-              },
-            },
-          },
-        },
+        ruff = {},
+        pylsp = {},
         lua_ls = {
           settings = {
             Lua = {
@@ -171,6 +150,44 @@ return {
           end,
         },
       }
+
+      vim.lsp.config('pylsp', {
+        settings = {
+          pylsp = {
+            plugins = {
+              pycodestyle = { enabled = false },
+              flake8 = { enabled = false },
+              pyflakes = { enabled = false },
+              mccabe = { enabled = false },
+              pylint = { enabled = false },
+              autopep8 = { enabled = false },
+              yapf = { enabled = false },
+              pylsp_mypy = { enabled = false },
+              pylsp_black = { enabled = false },
+              pylsp_isort = { enabled = false },
+              jedi_completion = { enabled = true },
+              jedi_definition = { enabled = true },
+              jedi_references = { enabled = true },
+              jedi_signature_help = { enabled = true },
+              jedi_symbols = { enabled = true },
+            },
+          },
+        },
+      })
+
+      vim.lsp.config('ruff', {
+        init_options = {
+          settings = {
+            logLevel = 'debug',
+            lint = {
+              select = { 'E4', 'E7', 'E9', 'F', 'Q' },
+              unfixable = { 'B' },
+            },
+          },
+        },
+      })
+
+      vim.lsp.enable 'ruff'
     end,
   },
 
@@ -203,7 +220,11 @@ return {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        python = { 'ruff' },
+        python = {
+          'ruff_fix',
+          'ruff_format',
+          'ruff_organize_imports',
+        },
       },
     },
   },
