@@ -171,7 +171,6 @@ require('lazy').setup({
   require 'plugins',
   require 'colorscheme',
   require 'kickstart.plugins.debug',
-  require 'kickstart.plugins.lint',
   require 'kickstart.plugins.gitsigns',
 }, {
   ui = {
