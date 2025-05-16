@@ -28,6 +28,7 @@ return {
     },
     keys = {
       { '<leader>y', ':Tfm<CR>', desc = 'TFM' },
+      { '<leader>v', ':TfmVsplit<CR>', desc = 'TFM - vertical split' },
     },
   },
 
