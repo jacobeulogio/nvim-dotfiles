@@ -48,7 +48,7 @@ vim.o.scrolloff = 10
 
 vim.o.confirm = true
 
-vim.o.formatoptions:remove('c', 'r', 'o')
+vim.opt.formatoptions:remove('c', 'r', 'o')
 
 vim.cmd 'autocmd BufEnter * set formatoptions-=cro'
 vim.cmd 'autocmd BufEnter * setlocal formatoptions-=cro'
