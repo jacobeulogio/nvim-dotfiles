@@ -11,6 +11,11 @@ return {
         commentStyle = { italic = false },
         functionStyle = {},
         keywordStyle = { italic = false },
+        overrides = function()
+          return {
+            ['@variable.builtin'] = { italic = false },
+          }
+        end,
       }
     end,
   },
