@@ -156,10 +156,6 @@ return {
           settings = {
             pylsp = {
               plugins = {
-                ruff = {
-                  enabled = true,
-                  lineLength = 88, -- Matches ruff's default
-                },
                 pycodestyle = { enabled = false, ignore = { 'E501' } },
                 flake8 = { enabled = false },
                 pyflakes = { enabled = false },
