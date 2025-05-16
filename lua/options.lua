@@ -1,11 +1,11 @@
-vim.opt.termguicolors = true
+vim.o.termguicolors = true
 
-vim.opt.expandtab = true
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
-vim.opt.smartindent = true
-vim.opt.autoindent = true
+vim.o.expandtab = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
+vim.o.smartindent = true
+vim.o.autoindent = true
 
 vim.o.number = true
 vim.o.relativenumber = true
@@ -48,7 +48,7 @@ vim.o.scrolloff = 10
 
 vim.o.confirm = true
 
-vim.opt.formatoptions:remove('c', 'r', 'o')
+vim.o.formatoptions:remove('c', 'r', 'o')
 
 vim.cmd 'autocmd BufEnter * set formatoptions-=cro'
 vim.cmd 'autocmd BufEnter * setlocal formatoptions-=cro'
