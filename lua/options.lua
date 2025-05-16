@@ -7,46 +7,46 @@ vim.opt.softtabstop = 4
 vim.opt.smartindent = true
 vim.opt.autoindent = true
 
-vim.opt.number = true
-vim.opt.relativenumber = true
+vim.o.number = true
+vim.o.relativenumber = true
 
-vim.opt.mouse = 'a'
-vim.opt.showmode = false
+vim.o.mouse = 'a'
+vim.o.showmode = false
 
 vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
+  vim.o.clipboard = 'unnamedplus'
 end)
 
-vim.opt.breakindent = true
-vim.opt.undofile = true
+vim.o.breakindent = true
+vim.o.undofile = true
 
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.signcolumn = 'yes'
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.signcolumn = 'yes'
 
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
+vim.o.updatetime = 250
+vim.o.timeoutlen = 300
 
 -- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.o.splitright = true
+vim.o.splitbelow = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-vim.opt.list = true
+vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+vim.o.inccommand = 'split'
 
 -- Show which line your cursor is on
-vim.opt.cursorline = true
+vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.o.scrolloff = 10
 
-vim.opt.confirm = true
+vim.o.confirm = true
 
 vim.opt.formatoptions:remove('c', 'r', 'o')
 
@@ -57,12 +57,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
-    vim.highlight.on_yank()
+    vim.hl.on_yank()
   end,
 })
-
--- molten.nvim
-vim.g.molten_auto_open_output = false
-vim.g.molten_output_win_style = 'minimal'
 
 vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
