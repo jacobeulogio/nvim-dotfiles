@@ -1,4 +1,5 @@
-# Personal neovim configuration
+# Neovim Configs
+## Personal neovim configuration based on kickstart.nvim
 
 ```sh
 git clone https://github.com/jacobeulogio/nvim-dotfiles.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
