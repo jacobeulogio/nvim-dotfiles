@@ -14,7 +14,7 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = {
       { 'mason-org/mason.nvim', opts = {} },
-      'mason-org/mason-lspconfig.nvim',
+      { 'mason-org/mason-lspconfig.nvim', opts = {} },
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
@@ -120,8 +120,41 @@ return {
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
       local servers = {
-        ruff = {},
-        pylsp = {},
+        ruff = {
+          init_options = {
+            settings = {
+              logLevel = 'debug',
+              lint = {
+                select = { 'E4', 'E7', 'E9', 'F', 'Q' },
+                unfixable = { 'B' },
+              },
+            },
+          },
+        },
+
+        pylsp = {
+          settings = {
+            pylsp = {
+              plugins = {
+                pycodestyle = { enabled = false },
+                flake8 = { enabled = false },
+                pyflakes = { enabled = false },
+                mccabe = { enabled = false },
+                pylint = { enabled = false },
+                autopep8 = { enabled = false },
+                yapf = { enabled = false },
+                pylsp_mypy = { enabled = false },
+                pylsp_black = { enabled = false },
+                pylsp_isort = { enabled = false },
+                jedi_definition = { enabled = true },
+                jedi_completion = { enabled = true },
+                jedi_references = { enabled = true },
+                jedi_signature_help = { enabled = true },
+                jedi_symbols = { enabled = true },
+              },
+            },
+          },
+        },
         lua_ls = {
           settings = {
             Lua = {
@@ -137,57 +170,18 @@ return {
         'stylua', -- Used to format Lua code
         'ruff',
       })
+
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+      ---@type MasonLspconfigSettings
+      ---@diagnostic disable-next-line: missing-fields
       require('mason-lspconfig').setup {
-        ensure_installed = {},
-        automatic_installation = false,
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
-          end,
-        },
+        automatic_enable = vim.tbl_keys(servers or {}),
       }
 
-      vim.lsp.config('pylsp', {
-        settings = {
-          pylsp = {
-            plugins = {
-              pycodestyle = { enabled = false },
-              flake8 = { enabled = false },
-              pyflakes = { enabled = false },
-              mccabe = { enabled = false },
-              pylint = { enabled = false },
-              autopep8 = { enabled = false },
-              yapf = { enabled = false },
-              pylsp_mypy = { enabled = false },
-              pylsp_black = { enabled = false },
-              pylsp_isort = { enabled = false },
-              jedi_completion = { enabled = true },
-              jedi_definition = { enabled = true },
-              jedi_references = { enabled = true },
-              jedi_signature_help = { enabled = true },
-              jedi_symbols = { enabled = true },
-            },
-          },
-        },
-      })
-
-      vim.lsp.config('ruff', {
-        init_options = {
-          settings = {
-            logLevel = 'debug',
-            lint = {
-              select = { 'E4', 'E7', 'E9', 'F', 'Q' },
-              unfixable = { 'B' },
-            },
-          },
-        },
-      })
-
-      vim.lsp.enable 'ruff'
+      for server_name, config in pairs(servers) do
+        vim.lsp.config(server_name, config)
+      end
     end,
   },
 
