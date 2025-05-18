@@ -13,6 +13,9 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.keymap.set('t', '<C-c><C-c>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+-- Toggle Term
+vim.api.nvim_set_keymap('n', '\\', ':ToggleTerm size=80 direction=vertical <CR><C-\\><C-n>', { noremap = true, silent = true })
+
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
@@ -25,31 +28,7 @@ vim.keymap.set({ 'n', 't' }, '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the 
 vim.keymap.set({ 'n', 't' }, '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set({ 'n', 't' }, '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- Terminal Keymap
-vim.api.nvim_set_keymap('n', '\\', ':ToggleTerm size=80 direction=vertical <CR><C-\\><C-n>', { noremap = true, silent = true })
-
--- Send lines to terminal
-local trim_spaces = true
-vim.keymap.set('v', '<leader>r', function()
-  require('toggleterm').send_lines_to_terminal('visual_selection', trim_spaces, { args = vim.v.count })
-end)
-
-local map = function(keys, func, desc, mode)
-  mode = mode or 'n'
-  vim.keymap.set(mode, keys, func, { desc = desc })
-end
-
--- -- Create an autocommand group for netrw keymaps
--- vim.api.nvim_create_autocmd('FileType', {
---   group = vim.api.nvim_create_augroup('user-netrw-keymaps', { clear = true }),
---   pattern = '*', -- Apply to all filetypes
---   callback = function()
---     map('<leader>ee', ':Explore<CR>', 'Open [E]xplorer in current window')
---     map('<leader>ev', ':Vexplore<CR>', 'Open [E]xplorer in [V]ertical split')
---     map('<leader>eh', ':Sexplore<CR>', 'Open [E]xplorer in [H]orizontal split')
---     map('<leader>et', ':Texplore<CR>', 'Open [E]xplorer in new [T]ab')
---   end,
-
+-- Toggle Diagnostics
 vim.g['diagnostics_active'] = true
 function Toggle_diagnostics()
   if vim.g.diagnostics_active then
@@ -60,5 +39,4 @@ function Toggle_diagnostics()
     vim.diagnostic.enable()
   end
 end
-
 vim.keymap.set('n', '<leader>ud', Toggle_diagnostics, { noremap = true, silent = true, desc = 'Toggle vim diagnostics' })
