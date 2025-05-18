@@ -1,5 +1,4 @@
 return {
-
   {
     'akinsho/toggleterm.nvim',
     version = '*',
@@ -171,5 +170,9 @@ return {
       { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
       { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
     },
+  },
+  {
+    'dariuscorvus/tree-sitter-language-injection.nvim',
+    opts = {},
   },
 }

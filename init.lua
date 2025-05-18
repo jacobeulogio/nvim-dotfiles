@@ -105,7 +105,7 @@ require('lazy').setup({
 
   {
     'nvim-treesitter/nvim-treesitter',
-    build = ':TSupdate',
+    build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- sets main module to use for opts
     opts = {
       ensure_installed = {
