@@ -137,7 +137,6 @@ require('lazy').setup({
   require 'plugins',
   require 'colorscheme',
   require 'kickstart.plugins.debug',
-  require 'kickstart.plugins.gitsigns',
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {
