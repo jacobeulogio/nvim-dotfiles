@@ -1,6 +1,39 @@
 return {
 
   { 'akinsho/toggleterm.nvim', version = '*', config = true },
+  { 'nmac427/guess-indent.nvim', opts = {} }, -- detect tabstop and shiftwidth automatically
+
+  {
+    'lewis6991/gitsigns.nvim',
+    opts = {
+      signs = {
+        add = { text = '+' },
+        change = { text = '~' },
+        delete = { text = '_' },
+        topdelete = { text = '‾' },
+        changedelete = { text = '~' },
+      },
+    },
+  },
+
+  {
+    'folke/which-key.nvim',
+    event = 'vimenter', -- sets the loading event to 'vimenter'
+    opts = {
+      delay = 0,
+      icons = {
+        mappings = vim.g.have_nerd_font,
+        keys = {},
+      },
+
+      -- document existing key chains
+      spec = {
+        { '<leader>s', group = '[s]earch' },
+        { '<leader>t', group = '[t]oggle' },
+        { '<leader>h', group = 'git [h]unk', mode = { 'n', 'v' } },
+      },
+    },
+  },
 
   {
     'rolv-apneseth/tfm.nvim',
@@ -67,26 +100,26 @@ return {
     'brenoprata10/nvim-highlight-colors',
     opts = {},
   },
-  -- {
-  --   'rmagatti/auto-session',
-  --   lazy = false,
-  --
-  --   ---enables autocomplete for opts
-  --   ---@module "auto-session"
-  --   ---@type AutoSession.Config
-  --   opts = {
-  --     suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
-  --     -- log_level = 'debug',
-  --   },
-  -- },
+  {
+    'rmagatti/auto-session',
+    lazy = false,
 
-  -- {
-  --   "iamcco/markdown-preview.nvim",
-  --   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-  --   ft = { "markdown" },
-  --   build = function() vim.fn["mkdp#util#install"]() end,
-  -- },
-
+    ---enables autocomplete for opts
+    ---@module "auto-session"
+    ---@type AutoSession.Config
+    opts = {
+      suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
+      -- log_level = 'debug',
+    },
+  },
+  {
+    'iamcco/markdown-preview.nvim',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    ft = { 'markdown' },
+    build = function()
+      vim.fn['mkdp#util#install']()
+    end,
+  },
   {
     'iamcco/markdown-preview.nvim',
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
@@ -95,5 +128,23 @@ return {
       vim.g.mkdp_filetypes = { 'markdown' }
     end,
     ft = { 'markdown' },
+  },
+  {
+    'christoomey/vim-tmux-navigator',
+    cmd = {
+      'TmuxNavigateLeft',
+      'TmuxNavigateDown',
+      'TmuxNavigateUp',
+      'TmuxNavigateRight',
+      'TmuxNavigatePrevious',
+      'TmuxNavigatorProcessList',
+    },
+    keys = {
+      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
+      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
+      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
+      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
+      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
+    },
   },
 }
