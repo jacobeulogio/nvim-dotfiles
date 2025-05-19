@@ -9,7 +9,6 @@ return {
       },
     },
   },
-
   {
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -136,6 +135,7 @@ return {
           settings = {
             pylsp = {
               plugins = {
+                ruff = { enabled = false },
                 pycodestyle = { enabled = false },
                 flake8 = { enabled = false },
                 pyflakes = { enabled = false },
