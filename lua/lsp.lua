@@ -177,6 +177,13 @@ return {
       ---@diagnostic disable-next-line: missing-fields
       require('mason-lspconfig').setup {
         automatic_enable = vim.tbl_keys(servers or {}),
+        handlers = {
+          function(server_name)
+            local server = servers[server_name] or {}
+            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+            require('lspconfig')[server_name].setup(server)
+          end,
+        },
       }
 
       for server_name, config in pairs(servers) do
@@ -277,8 +284,12 @@ return {
 
       sources = {
         default = { 'lsp', 'path', 'snippets', 'lazydev' },
+        per_filetype = {
+          sql = { 'snippets', 'dadbod', 'buffer' },
+        },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+          dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
         },
       },
 
