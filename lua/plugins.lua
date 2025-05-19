@@ -2,6 +2,21 @@ return {
   {
     'akinsho/toggleterm.nvim',
     version = '*',
+    opts = {
+      size = function(term)
+        if term.direction == 'horizontal' then
+          return 15
+        elseif term.direction == 'vertical' then
+          return vim.o.columns * 0.4
+        end
+      end,
+      open_mapping = [[\]],
+      direction = 'vertical',
+      start_in_insert = true,
+      on_create = function(term)
+        vim.api.nvim_chan_send(term.job_id, 'clear\n')
+      end,
+    },
     config = true,
     init = function()
       function _G.set_terminal_keymaps()
@@ -16,15 +31,27 @@ return {
       end
       vim.cmd 'autocmd! TermOpen term://* lua set_terminal_keymaps()'
       local trim_spaces = true
-      vim.keymap.set('n', '<space>r', function()
+      vim.keymap.set('n', '<space>rt', function()
         require('toggleterm').send_lines_to_terminal('single_line', trim_spaces, { args = vim.v.count })
       end)
-      vim.keymap.set('v', '<leader>r', function()
+      vim.keymap.set('v', '<leader>rt', function()
         require('toggleterm').send_lines_to_terminal('visual_selection', trim_spaces, { args = vim.v.count })
       end)
     end,
   },
-
+  -- slime (REPL integration)
+  {
+    'jpalardy/vim-slime',
+    keys = {
+      { '<leader>rs', ":<C-u>'<,'>SlimeSend<CR>", mode = 'v', desc = 'Slime Send Selection' },
+      { '<leader>rs', ':SlimeSend<CR>', mode = 'n', desc = 'Slime Send Current Line' },
+    },
+    config = function()
+      vim.g.slime_target = 'tmux'
+      vim.g.slime_cell_delimiter = '# %%'
+      vim.g.slime_bracketed_paste = 1
+    end,
+  },
   { 'nmac427/guess-indent.nvim', opts = {} }, -- detect tabstop and shiftwidth automatically
 
   {
@@ -152,7 +179,7 @@ return {
 
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
-        return '%2l:%-2v'
+        return '%2l:%-2v %L'
       end
 
       require('mini.git').setup()
@@ -171,10 +198,12 @@ return {
       }
     end,
   },
+
   {
     'brenoprata10/nvim-highlight-colors',
     opts = {},
   },
+
   {
     'rmagatti/auto-session',
     lazy = false,
@@ -187,6 +216,7 @@ return {
       -- log_level = 'debug',
     },
   },
+
   {
     'iamcco/markdown-preview.nvim',
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
@@ -195,6 +225,7 @@ return {
       vim.fn['mkdp#util#install']()
     end,
   },
+
   {
     'iamcco/markdown-preview.nvim',
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
@@ -204,6 +235,7 @@ return {
     end,
     ft = { 'markdown' },
   },
+
   {
     'christoomey/vim-tmux-navigator',
     cmd = {
@@ -222,6 +254,7 @@ return {
       { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
     },
   },
+
   {
     'dariuscorvus/tree-sitter-language-injection.nvim',
     opts = {},
