@@ -16,6 +16,7 @@ return {
       vim.g.db_ui_use_nerd_fonts = 1
     end,
   },
+
   {
     'akinsho/toggleterm.nvim',
     version = '*',
@@ -38,13 +39,10 @@ return {
     init = function()
       function _G.set_terminal_keymaps()
         local opts = { buffer = 0 }
-        vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
-        vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
         vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
         vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
         vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
         vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
-        vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
       end
       vim.cmd 'autocmd! TermOpen term://* lua set_terminal_keymaps()'
       local trim_spaces = true
@@ -56,7 +54,7 @@ return {
       end)
     end,
   },
-  -- slime (REPL integration)
+
   {
     'jpalardy/vim-slime',
     keys = {
@@ -184,7 +182,7 @@ return {
     },
   },
 
-  { -- Collection of various small independent plugins/modules
+  {
     'echasnovski/mini.nvim',
     config = function()
       require('mini.ai').setup { n_lines = 500 }
@@ -275,5 +273,24 @@ return {
   {
     'dariuscorvus/tree-sitter-language-injection.nvim',
     opts = {},
+  },
+
+  {
+    'linux-cultist/venv-selector.nvim',
+    dependencies = {
+      'neovim/nvim-lspconfig',
+      'mfussenegger/nvim-dap',
+      'mfussenegger/nvim-dap-python', --optional
+      { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+    },
+    lazy = false,
+    branch = 'regexp', -- This is the regexp branch, use this for the new version
+    keys = {
+      { ',v', '<cmd>VenvSelect<cr>' },
+    },
+    ---@type venv-selector.Config
+    opts = {
+      -- Your settings go here
+    },
   },
 }
