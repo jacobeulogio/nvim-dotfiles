@@ -131,6 +131,7 @@ require('lazy').setup({
 
   require 'lsp',
   require 'plugins',
+  require 'small_plugins',
   require 'colorscheme',
   require 'kickstart.plugins.debug',
 }, {

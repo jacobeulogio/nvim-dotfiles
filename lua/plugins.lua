@@ -12,63 +12,9 @@ return {
       'DBUIFindBuffer',
     },
     init = function()
-      -- Your DBUI configuration
       vim.g.db_ui_use_nerd_fonts = 1
     end,
   },
-
-  {
-    'akinsho/toggleterm.nvim',
-    version = '*',
-    opts = {
-      size = function(term)
-        if term.direction == 'horizontal' then
-          return 15
-        elseif term.direction == 'vertical' then
-          return vim.o.columns * 0.4
-        end
-      end,
-      open_mapping = [[\]],
-      direction = 'vertical',
-      start_in_insert = true,
-      on_create = function(term)
-        vim.api.nvim_chan_send(term.job_id, 'clear\n')
-      end,
-    },
-    config = true,
-    init = function()
-      function _G.set_terminal_keymaps()
-        local opts = { buffer = 0 }
-        vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
-        vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
-        vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
-        vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
-        vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
-      end
-      vim.cmd 'autocmd! TermOpen term://* lua set_terminal_keymaps()'
-      local trim_spaces = true
-      vim.keymap.set('n', '<space>rt', function()
-        require('toggleterm').send_lines_to_terminal('single_line', trim_spaces, { args = vim.v.count })
-      end)
-      vim.keymap.set('v', '<leader>rt', function()
-        require('toggleterm').send_lines_to_terminal('visual_selection', trim_spaces, { args = vim.v.count })
-      end)
-    end,
-  },
-
-  {
-    'jpalardy/vim-slime',
-    keys = {
-      { '<leader>rs', ":<C-u>'<,'>SlimeSend<CR>", mode = 'v', desc = 'Slime Send Selection' },
-      { '<leader>rs', ':SlimeSend<CR>', mode = 'n', desc = 'Slime Send Current Line' },
-    },
-    config = function()
-      vim.g.slime_target = 'tmux'
-      vim.g.slime_cell_delimiter = '# %%'
-      vim.g.slime_bracketed_paste = 1
-    end,
-  },
-  { 'nmac427/guess-indent.nvim', opts = {} }, -- detect tabstop and shiftwidth automatically
 
   {
     'lewis6991/gitsigns.nvim',
@@ -136,19 +82,17 @@ return {
 
   {
     'folke/which-key.nvim',
-    event = 'vimenter', -- sets the loading event to 'vimenter'
+    event = 'VimEnter', -- sets the loading event to 'vimenter'
     opts = {
       delay = 0,
       icons = {
         mappings = vim.g.have_nerd_font,
         keys = {},
       },
-
-      -- document existing key chains
       spec = {
-        { '<leader>s', group = '[s]earch' },
-        { '<leader>t', group = '[t]oggle' },
-        { '<leader>h', group = 'git [h]unk', mode = { 'n', 'v' } },
+        { '<leader>s', group = '[S]earch' },
+        { '<leader>t', group = '[T]oggle' },
+        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
   },
@@ -162,8 +106,6 @@ return {
       enable_cmds = true,
       keybindings = {
         ['<ESC>'] = 'q',
-        -- Override the open mode (i.e. vertical/horizontal split, new tab)
-        -- Tip: you can add an extra `<CR>` to the end of these to immediately open the selected file(s) (assuming the TFM uses `enter` to finalise selection)
         ['<C-v>'] = "<C-\\><C-O>:lua require('tfm').set_next_open_mode(require('tfm').OPEN_MODE.vsplit)<CR>",
         ['<C-x>'] = "<C-\\><C-O>:lua require('tfm').set_next_open_mode(require('tfm').OPEN_MODE.split)<CR>",
         ['<C-t>'] = "<C-\\><C-O>:lua require('tfm').set_next_open_mode(require('tfm').OPEN_MODE.tabedit)<CR>",
@@ -179,7 +121,6 @@ return {
     },
     keys = {
       { '<leader>y', ':Tfm<CR>', desc = 'TFM' },
-      { '<leader>v', ':TfmVsplit<CR>', desc = 'TFM - vertical split' },
     },
   },
 
@@ -216,11 +157,6 @@ return {
   },
 
   {
-    'brenoprata10/nvim-highlight-colors',
-    opts = {},
-  },
-
-  {
     'rmagatti/auto-session',
     lazy = false,
 
@@ -234,46 +170,18 @@ return {
   },
 
   {
-    'iamcco/markdown-preview.nvim',
-    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-    ft = { 'markdown' },
-    build = function()
-      vim.fn['mkdp#util#install']()
-    end,
-  },
-
-  {
-    'iamcco/markdown-preview.nvim',
-    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-    build = 'cd app && yarn install',
-    init = function()
-      vim.g.mkdp_filetypes = { 'markdown' }
-    end,
-    ft = { 'markdown' },
-  },
-
-  {
-    'christoomey/vim-tmux-navigator',
-    cmd = {
-      'TmuxNavigateLeft',
-      'TmuxNavigateDown',
-      'TmuxNavigateUp',
-      'TmuxNavigateRight',
-      'TmuxNavigatePrevious',
-      'TmuxNavigatorProcessList',
-    },
+    'jpalardy/vim-slime',
     keys = {
-      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
-      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
-      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
-      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
-      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
+      { '<leader>r', ":<C-u>'<,'>SlimeSend<CR>", mode = 'v', desc = 'Slime Send Selection' },
+      { '<leader>r', ':SlimeSend<CR>', mode = 'n', desc = 'Slime Send Current Line' },
     },
-  },
-
-  {
-    'dariuscorvus/tree-sitter-language-injection.nvim',
-    opts = {},
+    config = function()
+      vim.g.slime_target = 'tmux'
+      vim.g.slime_cell_delimiter = '# %%'
+      vim.g.slime_bracketed_paste = 1
+      vim.g.slime_default_config = { socket_name = 'default', target_pane = '2' }
+      vim.g.slime_dont_ask_default = 1
+    end,
   },
 
   {
@@ -289,9 +197,15 @@ return {
     keys = {
       { ',v', '<cmd>VenvSelect<cr>' },
     },
+
     ---@type venv-selector.Config
     opts = {
-      -- Your settings go here
+      search = {
+        virtualenvs = {
+          command = "$FD 'python$' ~/.virtualenvs --no-ignore-vcs --color never | grep /bin/python",
+        },
+        cwd = false,
+      },
     },
   },
 }
