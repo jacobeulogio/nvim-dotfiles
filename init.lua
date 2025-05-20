@@ -47,9 +47,6 @@ require('lazy').setup({
           mappings = {
             i = {
               ['<C-d>'] = actions.delete_buffer,
-              ['<C-c>'] = function(prompt_bufnr)
-                vim.cmd 'stopinsert'
-              end,
             },
             n = {
               ['<C-d>'] = actions.delete_buffer,
