@@ -129,7 +129,7 @@ return {
       },
     },
     keys = {
-      { '<leader>y', ':Tfm<CR>', desc = 'TFM' },
+      { '<leader>e', ':Tfm<CR>', desc = 'TFM' },
     },
   },
 

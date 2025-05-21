@@ -13,11 +13,6 @@ vim.o.relativenumber = true
 vim.o.mouse = 'a'
 vim.o.showmode = false
 
--- Clipboard
-vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
-end)
-
 -- Undo History
 vim.o.undofile = true
 
