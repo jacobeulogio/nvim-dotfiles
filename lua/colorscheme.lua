@@ -18,26 +18,8 @@ return {
         end,
       }
     end,
-  },
-  {
-    'aktersnurra/no-clown-fiesta.nvim',
-    priority = 1000,
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('no-clown-fiesta').setup {
-        transparent = true,
-        styles = {
-          comments = {},
-          functions = {},
-          keywords = {},
-          lsp = {},
-          match_paren = {},
-          variables = {},
-          type = {},
-        },
-        vim.cmd.colorscheme 'kanagawa-dragon',
-        -- vim.cmd.colorscheme 'no-clown-fiesta',
-      }
+    init = function()
+      vim.cmd.colorscheme 'kanagawa-dragon'
     end,
   },
 }
