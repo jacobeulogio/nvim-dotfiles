@@ -23,6 +23,10 @@ vim.keymap.set({ 'n', 't' }, '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the 
 vim.keymap.set({ 'n', 't' }, '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set({ 'n', 't' }, '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+vim.keymap.set('n', '<C-w>h', ':vertical resize -5<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-w>l', ':vertical resize +5<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-w>k', ':resize +5<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-w>j', ':resize -5<CR>', { noremap = true, silent = true })
 -- Toggle Diagnostics
 vim.g['diagnostics_active'] = true
 function Toggle_diagnostics()
