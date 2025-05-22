@@ -143,7 +143,7 @@ return {
 
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
-        return '%2l:%-2v %L'
+        return '%2l:%-2v│ %L'
       end
 
       require('mini.git').setup()
