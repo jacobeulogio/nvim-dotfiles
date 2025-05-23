@@ -1,6 +1,7 @@
 vim.o.termguicolors = true
 
 -- Indentation
+vim.o.shiftwidth = 4
 vim.o.smartindent = true
 vim.o.autoindent = true
 vim.o.breakindent = true
