@@ -15,11 +15,7 @@ return {
       { 'mason-org/mason.nvim', opts = {} },
       { 'mason-org/mason-lspconfig.nvim', opts = {} },
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-
-      -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
-
-      -- Allows extra capabilities provided by blink.cmp
       'saghen/blink.cmp',
     },
     config = function()
@@ -127,6 +123,9 @@ return {
                 select = { 'E4', 'E7', 'E9', 'F', 'Q' },
                 unfixable = { 'B' },
               },
+              format = {
+                ['quote-style'] = 'single',
+              },
             },
           },
         },
@@ -168,7 +167,6 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
-        'ruff',
       })
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
