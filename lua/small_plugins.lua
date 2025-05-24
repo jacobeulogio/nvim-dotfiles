@@ -7,6 +7,16 @@ return {
   { 'dariuscorvus/tree-sitter-language-injection.nvim', opts = {} },
 
   {
+    'Wansmer/treesj',
+    keys = { '<space>m' },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
+    config = function()
+      require('treesj').setup {--[[ your config ]]
+      }
+    end,
+  },
+
+  {
     'iamcco/markdown-preview.nvim',
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
     build = 'cd app && yarn install',

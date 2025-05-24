@@ -139,21 +139,24 @@ return {
 
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
+      local docstring = { 'D103', 'D100', 'D101', 'D415' }
       local servers = {
         ruff = {
           init_options = {
             settings = {
+              lineLength = 120,
               logLevel = 'debug',
               lint = {
                 select = { 'ALL' },
+                fixable = { 'ALL' },
                 unfixable = { 'B', 'F401', 'E501', 'UP032', 'RUF100' },
                 ignore = {
-                  'D103',
-                  'D100',
+                  docstring,
                   'INP001',
                   'ANN201',
                   'PD901',
                   'COM812',
+                  'W293',
                 },
               },
             },
