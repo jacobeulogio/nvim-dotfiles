@@ -85,6 +85,33 @@ return {
       })
 
       -- Diagnostic Config     See :help vim.diagnostic.Opts
+      -- vim.diagnostic.config {
+      --   severity_sort = true,
+      --   float = { border = 'rounded', source = 'if_many' },
+      --   underline = { severity = vim.diagnostic.severity.ERROR },
+      --   signs = vim.g.have_nerd_font and {
+      --     text = {
+      --       [vim.diagnostic.severity.ERROR] = '󰅚 ',
+      --       [vim.diagnostic.severity.WARN] = '󰀪 ',
+      --       [vim.diagnostic.severity.INFO] = '󰋽 ',
+      --       [vim.diagnostic.severity.HINT] = '󰌶 ',
+      --     },
+      --   } or {},
+      --   virtual_text = {
+      --     source = 'if_many',
+      --     spacing = 2,
+      --     format = function(diagnostic)
+      --       local diagnostic_message = {
+      --         [vim.diagnostic.severity.ERROR] = diagnostic.message,
+      --         [vim.diagnostic.severity.WARN] = diagnostic.message,
+      --         [vim.diagnostic.severity.INFO] = diagnostic.message,
+      --         [vim.diagnostic.severity.HINT] = diagnostic.message,
+      --       }
+      --       return diagnostic_message[diagnostic.severity]
+      --     end,
+      --   },
+      -- }
+
       vim.diagnostic.config {
         severity_sort = true,
         float = { border = 'rounded', source = 'if_many' },
@@ -101,13 +128,11 @@ return {
           source = 'if_many',
           spacing = 2,
           format = function(diagnostic)
-            local diagnostic_message = {
-              [vim.diagnostic.severity.ERROR] = diagnostic.message,
-              [vim.diagnostic.severity.WARN] = diagnostic.message,
-              [vim.diagnostic.severity.INFO] = diagnostic.message,
-              [vim.diagnostic.severity.HINT] = diagnostic.message,
-            }
-            return diagnostic_message[diagnostic.severity]
+            if diagnostic.code then
+              return string.format('[%s] %s', diagnostic.code, diagnostic.message)
+            else
+              return diagnostic.message[diagnostic.severity]
+            end
           end,
         },
       }
@@ -120,11 +145,16 @@ return {
             settings = {
               logLevel = 'debug',
               lint = {
-                select = { 'E4', 'E7', 'E9', 'F', 'Q' },
-                unfixable = { 'B' },
-              },
-              format = {
-                ['quote-style'] = 'single',
+                select = { 'ALL' },
+                unfixable = { 'B', 'F401', 'E501', 'UP032', 'RUF100' },
+                ignore = {
+                  'D103',
+                  'D100',
+                  'INP001',
+                  'ANN201',
+                  'PD901',
+                  'COM812',
+                },
               },
             },
           },
@@ -167,6 +197,7 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'ruff',
       })
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -222,7 +253,6 @@ return {
         python = {
           'ruff_fix',
           'ruff_format',
-          'ruff_organize_imports',
         },
       },
     },
