@@ -153,7 +153,6 @@ return {
                   'B',
                   'F401', -- Imported but unused 'E501', 'UP032', 'RUF100',
                 },
-                format = { quoteStyle = 'single' },
               },
             },
           },
