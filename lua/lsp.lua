@@ -139,7 +139,6 @@ return {
 
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-      local docstring = { 'D103', 'D100', 'D101', 'D415' }
       local servers = {
         ruff = {
           init_options = {
@@ -148,16 +147,13 @@ return {
               logLevel = 'debug',
               lint = {
                 select = { 'ALL' },
+                ignore = { 'D103', 'D100', 'D101', 'D415', 'INP001', 'ANN201', 'PD901' },
                 fixable = { 'ALL' },
-                unfixable = { 'B', 'F401', 'E501', 'UP032', 'RUF100' },
-                ignore = {
-                  docstring,
-                  'INP001',
-                  'ANN201',
-                  'PD901',
-                  'COM812',
-                  'W293',
+                unfixable = {
+                  'B',
+                  'F401', -- Imported but unused 'E501', 'UP032', 'RUF100',
                 },
+                format = { quoteStyle = 'single' },
               },
             },
           },
@@ -195,12 +191,16 @@ return {
             },
           },
         },
+
+        yamlls = {},
+        taplo = {},
       }
 
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
         'ruff',
+        'markdownlint',
       })
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
