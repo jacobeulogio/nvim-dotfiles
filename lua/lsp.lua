@@ -147,7 +147,13 @@ return {
               logLevel = 'debug',
               lint = {
                 select = { 'ALL' },
-                ignore = { 'D103', 'D100', 'D101', 'D415', 'INP001', 'ANN201', 'PD901' },
+                ignore = {
+                  'D',
+                  'ANN',
+                  'INP001',
+                  'PD901',
+                  'ERA001',
+                },
                 fixable = { 'ALL' },
                 unfixable = {
                   'B',
