@@ -7,6 +7,15 @@ return {
   { 'dariuscorvus/tree-sitter-language-injection.nvim', opts = {} },
 
   {
+    'kylechui/nvim-surround',
+    version = '^3.0.0',
+    event = 'VeryLazy',
+    config = function()
+      require('nvim-surround').setup {}
+    end,
+  },
+
+  {
     'Wansmer/treesj',
     keys = { '<space>m' },
     dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`

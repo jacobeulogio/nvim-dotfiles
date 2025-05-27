@@ -149,6 +149,7 @@ return {
                 select = { 'ALL' },
                 ignore = {
                   'D',
+                  'W',
                   'ANN',
                   'INP001',
                   'PD901',

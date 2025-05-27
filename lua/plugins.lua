@@ -109,15 +109,6 @@ return {
   },
 
   {
-    'kylechui/nvim-surround',
-    version = '^3.0.0',
-    event = 'VeryLazy',
-    config = function()
-      require('nvim-surround').setup {}
-    end,
-  },
-
-  {
     'folke/which-key.nvim',
     event = 'VimEnter', -- sets the loading event to 'vimenter'
     opts = {
@@ -147,7 +138,6 @@ return {
         ['<C-x>'] = "<C-\\><C-O>:lua require('tfm').set_next_open_mode(require('tfm').OPEN_MODE.split)<CR>",
         ['<C-t>'] = "<C-\\><C-O>:lua require('tfm').set_next_open_mode(require('tfm').OPEN_MODE.tabedit)<CR>",
       },
-      -- Customise UI. The below options are the default
       ui = {
         border = 'rounded',
         height = 1,
@@ -190,19 +180,6 @@ return {
       }
     end,
   },
-
-  -- {
-  --   'rmagatti/auto-session',
-  --   lazy = false,
-  --
-  --   ---enables autocomplete for opts
-  --   ---@module "auto-session"
-  --   ---@type AutoSession.Config
-  --   opts = {
-  --     suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
-  --     -- log_level = 'debug',
-  --   },
-  -- },
 
   {
     'jpalardy/vim-slime',
