@@ -20,7 +20,7 @@ return {
             ['@variable.builtin'] = { italic = false },
             -- MiniStatuslineModeNormal = { bg = '#000000', bold = true },
             MiniStatuslineDevinfo = { fg = '#8E9092', bg = '#101010' },
-            iniStatuslineFileinfo = { fg = '#8E9092', bg = '#101010' },
+            MiniStatuslineFileinfo = { fg = '#8E9092', bg = '#101010' },
             MiniStatuslineFilename = { fg = '#8E9092', bg = '#101010' },
             BlinkCmpMenu = { bg = '#1c1c1c' },
             BlinkCmpMenuSelection = { bg = '#4e4e4e' },
