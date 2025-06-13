@@ -1,21 +1,21 @@
 return {
   {
-  'nvim-tree/nvim-tree.lua',
-   opts={
+    'nvim-tree/nvim-tree.lua',
+    opts = {
       disable_netrw = false,
       hijack_netrw = false,
       hijack_unnamed_buffer_when_opening = false,
       view = {
-        side = "right",
+        side = 'right',
         width = 30,
       },
       git = {
-          enable = false,
-        },
+        enable = false,
+      },
     },
-  init = function()
-    vim.keymap.set('n', '<Bslash>',':NvimTreeToggle<CR>', { desc = 'Toggle Nvim Tree', noremap = true, silent = true })
-  end,
+    init = function()
+      vim.keymap.set('n', '<Bslash>', ':NvimTreeToggle<CR>', { desc = 'Toggle Nvim Tree', noremap = true, silent = true })
+    end,
   },
   {
     'kristijanhusak/vim-dadbod-ui',
