@@ -1,33 +1,21 @@
 return {
   {
-    'nvim-neo-tree/neo-tree.nvim',
-    version = '*',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-      'MunifTanjim/nui.nvim',
-    },
-    lazy = false,
-    keys = {
-      { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
-    },
-    ---@module "neo-tree"
-    ---@type neotree.Config?
-    opts = {
-      window = {
-        position = 'right',
-        width = 40,
-        mappings = {
-          ['o'] = 'open',
-          ['\\'] = 'close_window',
-        },
+  'nvim-tree/nvim-tree.lua',
+   opts={
+      disable_netrw = false,
+      hijack_netrw = false,
+      hijack_unnamed_buffer_when_opening = false,
+      view = {
+        side = "right",
+        width = 30,
       },
-      filesystem = {
-        follow_current_file = {
-          enabled = true,
+      git = {
+          enable = false,
         },
-      },
     },
+  init = function()
+    vim.keymap.set('n', '<Bslash>',':NvimTreeToggle<CR>', { desc = 'Toggle Nvim Tree', noremap = true, silent = true })
+  end,
   },
   {
     'kristijanhusak/vim-dadbod-ui',
@@ -229,4 +217,34 @@ return {
       },
     },
   },
+  -- {
+  --   'nvim-neo-tree/neo-tree.nvim',
+  --   version = '*',
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --     'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+  --     'MunifTanjim/nui.nvim',
+  --   },
+  --   lazy = false,
+  --   keys = {
+  --     { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+  --   },
+  --   ---@module "neo-tree"
+  --   ---@type neotree.Config?
+  --   opts = {
+  --     window = {
+  --       position = 'right',
+  --       width = 40,
+  --       mappings = {
+  --         ['o'] = 'open',
+  --         ['\\'] = 'close_window',
+  --       },
+  --     },
+  --     filesystem = {
+  --       follow_current_file = {
+  --         enabled = true,
+  --       },
+  --     },
+  --   },
+  -- },
 }
