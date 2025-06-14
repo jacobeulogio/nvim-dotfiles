@@ -15,6 +15,7 @@ return {
     },
     init = function()
       vim.keymap.set('n', '<Bslash>', ':NvimTreeToggle<CR>', { desc = 'Toggle Nvim Tree', noremap = true, silent = true })
+      vim.keymap.set('n', '|', ':NvimTreeRefresh<CR>', { desc = 'Toggle Nvim Tree', noremap = true, silent = true })
     end,
   },
   {
