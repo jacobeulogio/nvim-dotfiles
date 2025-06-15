@@ -1,23 +1,54 @@
 return {
   {
-    'nvim-tree/nvim-tree.lua',
+    'nvim-neo-tree/neo-tree.nvim',
+    version = '*',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
+    },
+    lazy = false,
+    keys = {
+      { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    },
+    ---@module "neo-tree"
+    ---@type neotree.Config?
     opts = {
-      disable_netrw = false,
-      hijack_netrw = false,
-      hijack_unnamed_buffer_when_opening = false,
-      view = {
-        side = 'right',
-        width = 30,
+      window = {
+        position = 'right',
+        width = 40,
+        mappings = {
+          ['o'] = 'open',
+          ['\\'] = 'close_window',
+        },
       },
-      git = {
-        enable = false,
+      filesystem = {
+        follow_current_file = {
+          enabled = true,
+        },
+        hijack_netrw_behavior = "disabled",
       },
     },
-    init = function()
-      vim.keymap.set('n', '<Bslash>', ':NvimTreeToggle<CR>', { desc = 'Toggle Nvim Tree', noremap = true, silent = true })
-      vim.keymap.set('n', '|', ':NvimTreeRefresh<CR>', { desc = 'Toggle Nvim Tree', noremap = true, silent = true })
-    end,
   },
+  -- {
+  --   'nvim-tree/nvim-tree.lua',
+  --   opts = {
+  --     disable_netrw = false,
+  --     hijack_netrw = false,
+  --     hijack_unnamed_buffer_when_opening = false,
+  --     view = {
+  --       side = 'right',
+  --       width = 30,
+  --     },
+  --     git = {
+  --       enable = false,
+  --     },
+  --   },
+  --   init = function()
+  --     vim.keymap.set('n', '<Bslash>', ':NvimTreeToggle<CR>', { desc = 'Toggle Nvim Tree', noremap = true, silent = true })
+  --     vim.keymap.set('n', '|', ':NvimTreeRefresh<CR>', { desc = 'Toggle Nvim Tree', noremap = true, silent = true })
+  --   end,
+  -- },
   {
     'kristijanhusak/vim-dadbod-ui',
     dependencies = {
@@ -218,34 +249,4 @@ return {
       },
     },
   },
-  -- {
-  --   'nvim-neo-tree/neo-tree.nvim',
-  --   version = '*',
-  --   dependencies = {
-  --     'nvim-lua/plenary.nvim',
-  --     'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-  --     'MunifTanjim/nui.nvim',
-  --   },
-  --   lazy = false,
-  --   keys = {
-  --     { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
-  --   },
-  --   ---@module "neo-tree"
-  --   ---@type neotree.Config?
-  --   opts = {
-  --     window = {
-  --       position = 'right',
-  --       width = 40,
-  --       mappings = {
-  --         ['o'] = 'open',
-  --         ['\\'] = 'close_window',
-  --       },
-  --     },
-  --     filesystem = {
-  --       follow_current_file = {
-  --         enabled = true,
-  --       },
-  --     },
-  --   },
-  -- },
 }
