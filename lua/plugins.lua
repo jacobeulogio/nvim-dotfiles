@@ -1,4 +1,8 @@
 return {
+  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  { 'nmac427/guess-indent.nvim', opts = {} },
+  { 'brenoprata10/nvim-highlight-colors', opts = {} },
+  { 'dariuscorvus/tree-sitter-language-injection.nvim', opts = {} },
   {
     'nvim-neo-tree/neo-tree.nvim',
     version = '*',
@@ -30,49 +34,6 @@ return {
       },
     },
   },
-  -- {
-  --   'nvim-tree/nvim-tree.lua',
-  --   opts = {
-  --     disable_netrw = false,
-  --     hijack_netrw = false,
-  --     hijack_unnamed_buffer_when_opening = false,
-  --     view = {
-  --       side = 'right',
-  --       width = 30,
-  --     },
-  --     git = {
-  --       enable = false,
-  --     },
-  --   },
-  --   init = function()
-  --     vim.keymap.set('n', '<Bslash>', ':NvimTreeToggle<CR>', { desc = 'Toggle Nvim Tree', noremap = true, silent = true })
-  --     vim.keymap.set('n', '|', ':NvimTreeRefresh<CR>', { desc = 'Toggle Nvim Tree', noremap = true, silent = true })
-  --   end,
-  -- },
-  {
-    'kristijanhusak/vim-dadbod-ui',
-    dependencies = {
-      { 'tpope/vim-dadbod', lazy = true },
-      { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
-    },
-    cmd = {
-      'DBUI',
-      'DBUIToggle',
-      'DBUIAddConnection',
-      'DBUIFindBuffer',
-    },
-    init = function()
-      vim.g.db_ui_use_nerd_fonts = 1
-
-      vim.api.nvim_create_autocmd('FileType', {
-        pattern = { 'dbui', 'sql', 'mysql', 'plsql' },
-        callback = function()
-          vim.keymap.set({ 'n', 'v' }, '<leader><CR>', '<Plug>(DBUI_ExecuteQuery)', { buffer = true, silent = true, desc = 'Execute sql query' })
-        end,
-      })
-    end,
-  },
-
   {
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -93,30 +54,13 @@ return {
           end
 
           -- Navigation
-          map('n', ']c', function()
-            if vim.wo.diff then
-              vim.cmd.normal { ']c', bang = true }
-            else
-              gitsigns.nav_hunk 'next'
-            end
-          end, { desc = 'Jump to next git [c]hange' })
-
-          map('n', '[c', function()
-            if vim.wo.diff then
-              vim.cmd.normal { '[c', bang = true }
-            else
-              gitsigns.nav_hunk 'prev'
-            end
-          end, { desc = 'Jump to previous git [c]hange' })
+          map('n', ']c', function() if vim.wo.diff then vim.cmd.normal { ']c', bang = true } else gitsigns.nav_hunk 'next' end end, { desc = 'Jump to next git [c]hange' })
+          map('n', '[c', function() if vim.wo.diff then vim.cmd.normal { '[c', bang = true } else gitsigns.nav_hunk 'prev' end end, { desc = 'Jump to previous git [c]hange' })
 
           -- Actions
           -- visual mode
-          map('v', '<leader>hs', function()
-            gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
-          end, { desc = 'git [s]tage hunk' })
-          map('v', '<leader>hr', function()
-            gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
-          end, { desc = 'git [r]eset hunk' })
+          map('v', '<leader>hs', function() gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' } end, { desc = 'git [s]tage hunk' })
+          map('v', '<leader>hr', function() gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end, { desc = 'git [r]eset hunk' })
           -- normal mode
           map('n', '<leader>hs', gitsigns.stage_hunk, { desc = 'git [s]tage hunk' })
           map('n', '<leader>hr', gitsigns.reset_hunk, { desc = 'git [r]eset hunk' })
@@ -126,9 +70,7 @@ return {
           map('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'git [p]review hunk' })
           map('n', '<leader>hb', gitsigns.blame_line, { desc = 'git [b]lame line' })
           map('n', '<leader>hd', gitsigns.diffthis, { desc = 'git [d]iff against index' })
-          map('n', '<leader>hD', function()
-            gitsigns.diffthis '@'
-          end, { desc = 'git [D]iff against last commit' })
+          map('n', '<leader>hD', function() gitsigns.diffthis '@' end, { desc = 'git [D]iff against last commit' })
           -- Toggles
           map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
           map('n', '<leader>tD', gitsigns.preview_hunk_inline, { desc = '[T]oggle git show [D]eleted' })
@@ -136,7 +78,6 @@ return {
       },
     },
   },
-
   {
     'folke/which-key.nvim',
     event = 'VimEnter', -- sets the loading event to 'vimenter'
@@ -153,7 +94,6 @@ return {
       },
     },
   },
-
   {
     'rolv-apneseth/tfm.nvim',
     lazy = false,
@@ -179,7 +119,6 @@ return {
       { '<leader>e', ':Tfm<CR>', desc = 'TFM' },
     },
   },
-
   {
     'echasnovski/mini.nvim',
     config = function()
@@ -209,44 +148,48 @@ return {
       }
     end,
   },
-
   {
-    'jpalardy/vim-slime',
-    keys = {
-      { '<leader>r', ":<C-u>'<,'>SlimeSend<CR>", mode = 'v', desc = 'Slime Send Selection' },
-      { '<leader>r', ':SlimeSend<CR>', mode = 'n', desc = 'Slime Send Current Line' },
-    },
+    'kylechui/nvim-surround',
+    version = '^3.0.0',
+    event = 'VeryLazy',
     config = function()
-      vim.g.slime_target = 'tmux'
-      vim.g.slime_cell_delimiter = '# %%'
-      vim.g.slime_bracketed_paste = 1
-      vim.g.slime_default_config = { socket_name = 'default', target_pane = '2' }
-      vim.g.slime_dont_ask_default = 1
+      require('nvim-surround').setup {}
     end,
   },
-
   {
-    'linux-cultist/venv-selector.nvim',
-    dependencies = {
-      'neovim/nvim-lspconfig',
-      'mfussenegger/nvim-dap',
-      'mfussenegger/nvim-dap-python', --optional
-      { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+    'Wansmer/treesj',
+    keys = { '<space>m' },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
+    config = function()
+      require('treesj').setup {--[[ your config ]]
+      }
+    end,
+  },
+  {
+    'iamcco/markdown-preview.nvim',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    build = 'cd app && yarn install',
+    init = function()
+      vim.g.mkdp_filetypes = { 'markdown' }
+    end,
+    ft = { 'markdown' },
+  },
+  {
+    'christoomey/vim-tmux-navigator',
+    cmd = {
+      'TmuxNavigateLeft',
+      'TmuxNavigateDown',
+      'TmuxNavigateUp',
+      'TmuxNavigateRight',
+      'TmuxNavigatePrevious',
+      'TmuxNavigatorProcessList',
     },
-    lazy = false,
-    branch = 'regexp', -- This is the regexp branch, use this for the new version
     keys = {
-      { ',v', '<cmd>VenvSelect<cr>' },
-    },
-
-    ---@type venv-selector.Config
-    opts = {
-      search = {
-        virtualenvs = {
-          command = "$FD 'python$' ~/.virtualenvs --no-ignore-vcs --color never | grep /bin/python",
-        },
-        cwd = false,
-      },
+      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
+      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
+      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
+      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
+      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
     },
   },
 }

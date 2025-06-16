@@ -47,10 +47,10 @@ vim.o.scrolloff = 10
 -- Ask Confirmation
 vim.o.confirm = true
 
-vim.opt.formatoptions:remove('c', 'r', 'o')
-
-vim.cmd 'autocmd BufEnter * set formatoptions-=cro'
-vim.cmd 'autocmd BufEnter * setlocal formatoptions-=cro'
+-- vim.opt.formatoptions:remove('c', 'r', 'o')
+--
+-- vim.cmd 'autocmd BufEnter * set formatoptions-=cro'
+-- vim.cmd 'autocmd BufEnter * setlocal formatoptions-=cro'
 
 -- Highlight on Yank
 vim.api.nvim_create_autocmd('TextYankPost', {

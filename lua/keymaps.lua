@@ -1,5 +1,3 @@
--- Keybinds
-
 -- Paste from clipboard
 vim.keymap.set({ 'v', 'x', 'n' }, '<C-y>', '"+y', { noremap = true, silent = true, desc = 'Yank to clipboard' })
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>p', '"0p', { noremap = true, silent = true, desc = 'Paste from clipboard' })
@@ -27,6 +25,7 @@ vim.keymap.set('n', '<C-w>h', ':vertical resize -5<CR>', { noremap = true, silen
 vim.keymap.set('n', '<C-w>l', ':vertical resize +5<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-w>k', ':resize +5<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-w>j', ':resize -5<CR>', { noremap = true, silent = true })
+
 -- Toggle Diagnostics
 vim.g['diagnostics_active'] = true
 function Toggle_diagnostics()
