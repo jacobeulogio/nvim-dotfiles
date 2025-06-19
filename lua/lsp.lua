@@ -1,34 +1,5 @@
 return {
   {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- sets main module to use for opts
-    opts = {
-      ensure_installed = {
-        'bash',
-        'sql',
-        'yaml',
-        'toml',
-        'diff',
-        'html',
-        'lua',
-        'luadoc',
-        'markdown',
-        'markdown_inline',
-        'query',
-        'vim',
-        'vimdoc',
-        'python',
-      },
-      auto_install = true,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = { 'ruby' },
-      },
-      indent = { enable = true, disable = { 'ruby' } },
-    },
-  },
-  {
     'folke/lazydev.nvim',
     ft = 'lua',
     opts = {
@@ -295,14 +266,6 @@ return {
     --- @type blink.cmp.Config
     opts = {
       keymap = {
-        -- <c-y> to accept ([y]es) the completion.
-        -- 'super-tab' for tab to accept
-        -- 'enter' for enter to accept
-        -- <tab>/<s-tab>: move to right/left of your snippet expansion
-        -- <c-space>: Open menu or open docs if already open
-        -- <c-n>/<c-p> or <up>/<down>: Select next/previous item
-        -- <c-e>: Hide menu
-        -- <c-k>: Toggle signature help
         preset = 'default',
       },
 
