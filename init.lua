@@ -21,7 +21,8 @@ rtp:prepend(lazypath)
 
 require('lazy').setup({
 
-  require 'telescopee',
+  require 'telescope-nvim',
+  require 'treesitter',
   require 'lsp',
   require 'plugins',
   require 'python',
