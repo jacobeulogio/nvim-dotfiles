@@ -24,9 +24,10 @@ require('lazy').setup({
   require 'telescope-nvim',
   require 'treesitter',
   require 'lsp',
-  require 'plugins',
   require 'python',
   require 'sql',
+  require 'git',
+  require 'plugins',
   require 'debugger',
   require 'colorscheme',
 

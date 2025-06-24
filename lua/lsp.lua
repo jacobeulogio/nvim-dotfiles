@@ -173,6 +173,7 @@ return {
             },
           },
         },
+
       }
 
       local ensure_installed = vim.tbl_keys(servers or {})
@@ -232,11 +233,9 @@ return {
       -- end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        python = {
-          'ruff_fix',
-          'ruff_format',
-        },
+        python = { 'ruff_fix', 'ruff_format', },
         nix = { 'alejandra' },
+        -- sql = { 'sql-formater' },
       },
     },
   },
