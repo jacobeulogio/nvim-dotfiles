@@ -1,51 +1,57 @@
-vim.o.termguicolors = true
+vim.opt.termguicolors = true
 
 -- Indentation
-vim.o.shiftwidth = 4
-vim.o.smartindent = true
-vim.o.autoindent = true
-vim.o.breakindent = true
+vim.opt.shiftwidth = 4
+vim.opt.smartindent = true
+vim.opt.autoindent = true
+vim.opt.breakindent = true
+
+-- Make tabs into spaces
+vim.opt.expandtab = true
+vim.opt.softtabstop = 4
+vim.opt.tabstop = 4
+
 
 -- Number Lines
-vim.o.number = true
-vim.o.relativenumber = true
+vim.opt.number = true
+vim.opt.relativenumber = true
 
 -- Mouse
-vim.o.mouse = 'a'
-vim.o.showmode = false
+vim.opt.mouse = 'a'
+vim.opt.showmode = false
 
 -- Undo History
-vim.o.undofile = true
+vim.opt.undofile = true
 
 -- Searching
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Git Signs
-vim.o.signcolumn = 'yes'
+vim.opt.signcolumn = 'yes'
 
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
 
 -- Configure how new splits should be opened
-vim.o.splitright = true
-vim.o.splitbelow = true
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
--- vim.o.list = true
+-- vim.opt.list = true
 -- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
-vim.o.inccommand = 'split'
+vim.opt.inccommand = 'split'
 
 -- Show which line your cursor is on
-vim.o.cursorline = true
+vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 10
+vim.opt.scrolloff = 10
 
 -- Ask Confirmation
-vim.o.confirm = true
+vim.opt.confirm = true
 
 -- vim.opt.formatoptions:remove('c', 'r', 'o')
 --
@@ -61,4 +67,4 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+vim.opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
