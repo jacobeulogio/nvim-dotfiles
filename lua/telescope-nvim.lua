@@ -66,11 +66,11 @@ return {
           grep_open_files = true,
           prompt_title = 'live grep in open files',
         }
-      end, { desc = '[s]earch [/] in open files' })
+      end, { desc = '[S]earch [/] in open files' })
 
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = '[s]earch [n]eovim files' })
+      end, { desc = '[S]earch [N]eovim files' })
     end,
   },
 }
