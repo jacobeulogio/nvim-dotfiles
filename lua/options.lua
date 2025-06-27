@@ -1,4 +1,5 @@
 vim.opt.termguicolors = true
+vim.opt.laststatus = 3
 
 -- Indentation
 vim.opt.shiftwidth = 4
@@ -11,6 +12,10 @@ vim.opt.expandtab = true
 vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
 
+vim.opt.fillchars:append {
+    vert = "│",  -- Vertical separator
+    horiz = "─", -- Horizontal separator
+}
 
 -- Number Lines
 vim.opt.number = true
