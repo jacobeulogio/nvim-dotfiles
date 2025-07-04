@@ -11,6 +11,7 @@ vim.opt.cursorline = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+
 -- Indentation
 vim.opt.shiftwidth = 4
 vim.opt.smartindent = true

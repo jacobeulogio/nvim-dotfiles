@@ -3,6 +3,7 @@ vim.keymap.set({ 'v', 'x', 'n' }, '<C-y>', '"+y', { noremap = true, silent = tru
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>p', '"0p', { noremap = true, silent = true, desc = 'Paste from clipboard' })
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>P', '"0P', { noremap = true, silent = true, desc = 'Paste from clipboard' })
 
+
 -- Delete without yanking
 vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete without yanking" })
 
