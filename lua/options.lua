@@ -11,7 +11,6 @@ vim.opt.cursorline = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
-
 -- Indentation
 vim.opt.shiftwidth = 4
 vim.opt.smartindent = true
@@ -58,7 +57,7 @@ vim.opt.backspace = 'indent,eol,start'
 vim.opt.autochdir = false
 vim.opt.iskeyword:append '-'
 vim.opt.path:append '**'
-vim.opt.selection = 'exclusive'
+vim.opt.selection = 'inclusive'
 vim.opt.mouse = 'a'
 vim.opt.modifiable = true
 vim.opt.encoding = 'UTF-8'
