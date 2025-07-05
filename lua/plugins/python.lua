@@ -13,7 +13,6 @@ return {
       vim.g.slime_dont_ask_default = 1
     end,
   },
-
   {
     'linux-cultist/venv-selector.nvim',
     dependencies = {

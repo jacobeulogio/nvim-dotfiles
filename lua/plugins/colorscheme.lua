@@ -36,22 +36,4 @@ return {
       vim.cmd.colorscheme 'kanagawa-dragon'
     end,
   },
-  {
-    'aktersnurra/no-clown-fiesta.nvim',
-    priority = 1001,
-    config = function()
-      require('no-clown-fiesta').setup {
-        transparent = true, -- Enable this to disable the bg color
-        styles = {
-          comments = {},
-          functions = {},
-          keywords = {},
-          lsp = {},
-          match_paren = {},
-          type = {},
-          variables = {},
-        },
-      }
-    end,
-  },
 }

@@ -36,6 +36,7 @@ vim.opt.inccommand = 'split'
 -- Searching
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 -- File handling

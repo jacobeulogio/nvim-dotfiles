@@ -1,4 +1,3 @@
-
 require 'options'
 require 'keymaps'
 
@@ -16,19 +15,7 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
-require('lazy').setup({
-
-  require 'telescope-nvim',
-  require 'treesitter',
-  require 'lsp',
-  require 'python',
-  require 'sql',
-  require 'git',
-  require 'plugins',
-  require 'debugger',
-  require 'colorscheme',
-
-})
+require('lazy').setup('plugins')
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
