@@ -117,25 +117,26 @@ return {
             settings = {
               lineLength = 120,
               logLevel = 'debug',
-              lint = {
-                select = { 'ALL' },
-                ignore = {
-                  'D',
-                  'W',
-                  'ANN',
-                  'INP001',
-                  'PD901',
-                  'ERA001',
-                },
-                fixable = { 'ALL' },
-                unfixable = {
-                  'B',
-                  'F401', -- Imported but unused
-                  'E501',
-                  'UP032',
-                  'RUF100',
-                },
-              },
+              -- lint = {
+              --   select = { 'ALL' },
+              --   ignore = {
+              --     'D',
+              --     'W',
+              --     'ANN',
+              --     'INP001',
+              --     'PD901',
+              --     'ERA001',
+              --     -- 'Q',
+              --   },
+              --   fixable = { 'ALL' },
+              --   unfixable = {
+              --     'B',
+              --     'F401', -- Imported but unused
+              --     'E501',
+              --     'UP032',
+              --     'RUF100',
+              --   },
+              -- },
             },
           },
         },

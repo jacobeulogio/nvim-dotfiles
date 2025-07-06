@@ -12,6 +12,7 @@ return {
         'toml',
         'diff',
         'html',
+        'htmldjango',
         'lua',
         'luadoc',
         'markdown',

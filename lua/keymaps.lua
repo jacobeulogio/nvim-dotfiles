@@ -2,7 +2,7 @@
 vim.keymap.set({ 'n', 'v', 'x' }, '<C-y>', '"+y', { noremap = true, silent = true, desc = 'Yank to clipboard' })
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>p', '"0p', { noremap = true, silent = true, desc = 'Paste latest yanked' })
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>P', '"0P', { noremap = true, silent = true, desc = 'Paste latest yanked' })
-vim.keymap.set({'n',  'x'}, 'p', 'P', { noremap = true })
+vim.keymap.set({'v'}, 'p', 'P', { noremap = true })
 
 -- Movement
 vim.keymap.set("n", "J", "mzJ`z")
