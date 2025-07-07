@@ -8,8 +8,8 @@ return {
         colors = {
           theme = { all = { ui = { bg_gutter = 'none' } } },
           palette = {
-            dragonGreen2 = '#7E7E7E',
-            dragonRed = '#D6865E',
+            dragonGreen2 = '#7a8382',
+            -- dragonRed = '#D6865E',
           },
         },
         commentStyle = { italic = false },
