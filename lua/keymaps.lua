@@ -40,3 +40,6 @@ function Toggle_diagnostics()
   end
 end
 vim.keymap.set('n', '<leader>td', Toggle_diagnostics, { noremap = true, silent = true, desc = 'LSP: Toggle diagnostics' })
+
+-- Signature Help
+vim.keymap.set('i', '<C-k>', function() require('blink.cmp').signature_help() end, { desc = 'Signature Help' })
