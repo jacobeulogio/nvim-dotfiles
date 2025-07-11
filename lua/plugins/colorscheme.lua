@@ -23,7 +23,7 @@ return {
             MiniStatuslineFileinfo = { bg = '#101010' },
             MiniStatuslineFilename = { bg = '#101010' },
             Pmenu = { bg = '#1c1c1c' },
-            PmenuSel = { bg = '#4e4e4e' },
+            PmenuSel = { bg = '#3a3a3a' },
             PmenuThumb = { bg = '#8E9092' },
             PmenuSbar = { bg = '#1c1c1c' },
             WinSeparator = { fg = '#272727'},
