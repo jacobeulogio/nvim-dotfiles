@@ -15,7 +15,8 @@ return {
         commentStyle = { italic = false },
         functionStyle = {},
         keywordStyle = { italic = false },
-        overrides = function()
+        overrides = function(colors)
+          local theme = colors.theme
           return {
             ['@variable.builtin'] = { italic = false },
             MiniStatuslineDevinfo = { bg = '#101010' },
@@ -39,6 +40,13 @@ return {
             FloatFooter = { bg = '#1c1c1c' },
             FloatTitle = { bg = '#1c1c1c' },
             FloatBorder = { bg = '#1c1c1c' },
+            TelescopeTitle = { fg = theme.ui.special, bold = true },
+            TelescopePromptNormal = { bg = theme.ui.bg_p1 },
+            TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
+            TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
+            TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
+            TelescopePreviewNormal = { bg = theme.ui.bg_dim },
+            TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
             -- Visual = { bg = '#303030' },
             -- ColorColumn = { bg = '#272727' },
             -- IncSearch = { bg = '#8E9092' },
