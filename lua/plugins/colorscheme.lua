@@ -18,7 +18,6 @@ return {
         overrides = function()
           return {
             ['@variable.builtin'] = { italic = false },
-            -- MiniStatuslineModeNormal = { bg = '#000000', bold = true },
             MiniStatuslineDevinfo = { bg = '#101010' },
             MiniStatuslineFileinfo = { bg = '#101010' },
             MiniStatuslineFilename = { bg = '#101010' },
@@ -32,12 +31,18 @@ return {
             PmenuThumb = { bg = '#8E9092' },
             PmenuSbar = { bg = '#1c1c1c' },
             WinSeparator = { fg = '#272727'},
+            CurSearch = { fg = 'NONE', bg = '#303030' },
+            Search = { fg = 'NONE', bg = '#303030' },
+            LspReferenceText = { bg = '#303030' },
+            LspReferenceWrite = { bg = '#303030', underline = false },
+            NormalFloat = { bg = '#1c1c1c' },
+            FloatFooter = { bg = '#1c1c1c' },
+            FloatTitle = { bg = '#1c1c1c' },
+            FloatBorder = { bg = '#1c1c1c' },
+            -- Visual = { bg = '#303030' },
+            -- ColorColumn = { bg = '#272727' },
+            -- IncSearch = { bg = '#8E9092' },
             -- NormalFloat = { bg = '#1c1c1c' },
-            -- BlinkCmpMenu = { bg = '#1c1c1c' },
-            -- BlinkCmpMenuSelection = { bg = '#4e4e4e' },
-            -- BlinkCmpScrollBarThumb = { bg = '#8E9092' },
-            -- BlinkCmpScrollBarGutter = { bg = '#1c1c1c' },
-            -- StatusLineNC = { fg = '#C8C093'},
           }
         end,
       }
