@@ -40,9 +40,10 @@ return {
             LspReferenceText = { bg = '#303030' },
             LspReferenceWrite = { bg = '#303030', underline = false },
             NormalFloat = { bg = theme.ui.bg_dim },
-            FloatFooter = { bg = '#1c1c1c' },
-            FloatTitle = { bg = '#1c1c1c' },
-            FloatBorder = { bg = '#1c1c1c' },
+            -- NormalFloat = { bg = '#1c1c1c' },
+            FloatFooter = { bg = theme.ui.bg_dim },
+            FloatTitle = { bg = theme.ui.bg_dim },
+            FloatBorder = { bg = theme.ui.bg_dim },
             TelescopeTitle = { fg = theme.ui.special, bold = true },
             TelescopePromptNormal = { bg = theme.ui.bg_dim },
             TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_dim },
@@ -53,7 +54,6 @@ return {
             -- Visual = { bg = '#303030' },
             -- ColorColumn = { bg = '#272727' },
             -- IncSearch = { bg = '#8E9092' },
-            -- NormalFloat = { bg = '#1c1c1c' },
           }
         end,
       }
