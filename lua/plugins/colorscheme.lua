@@ -6,7 +6,9 @@ return {
       require('kanagawa').setup {
         transparent = true,
         colors = {
-          theme = { all = { ui = { bg_gutter = 'none' } } },
+          theme = {
+            all = { ui = { bg_gutter = 'none' } }
+          },
           palette = {
             -- dragonGreen2 = '#625e5a',
             -- dragonRed = '#D6865E',

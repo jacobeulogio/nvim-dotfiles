@@ -14,6 +14,7 @@ return {
     init = function()
       vim.g.db_ui_use_nerd_fonts = 1
       vim.g.db_ui_save_location = '~/projects/sql-scripts'
+      vim.g.db_ui_execute_on_save = 0
       vim.api.nvim_create_autocmd('FileType', {
         pattern = { 'dbui', 'sql', 'mysql', 'plsql' },
         callback = function()
@@ -23,18 +24,18 @@ return {
     end,
   },
   {
-    "kndndrj/nvim-dbee",
+    'kndndrj/nvim-dbee',
     dependencies = {
-      "MunifTanjim/nui.nvim",
+      'MunifTanjim/nui.nvim',
     },
     build = function()
       -- Install tries to automatically detect the install method.
       -- if it fails, try calling it with one of these parameters:
       --    "curl", "wget", "bitsadmin", "go"
-      require("dbee").install()
+      require('dbee').install()
     end,
     config = function()
-      require("dbee").setup(--[[optional config]])
+      require('dbee').setup(--[[optional config]])
     end,
   },
 }
