@@ -21,7 +21,9 @@ return {
           local theme = colors.theme
           return {
             ['@variable.builtin'] = { italic = false },
-            String = { fg = '#625e5a' },
+            -- String = { fg = '#625e5a' },
+            -- String = { fg = '#908A7B' },
+            String = { fg = '#8C907B' },
             MiniStatuslineDevinfo = { bg = theme.ui.bg_dim },
             MiniStatuslineFileinfo = { bg = theme.ui.bg_dim },
             MiniStatuslineFilename = { bg = theme.ui.bg_dim },
