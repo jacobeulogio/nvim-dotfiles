@@ -203,8 +203,7 @@ return {
       end
     end,
   },
-
-  { -- Autoformat
+  {
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
@@ -237,13 +236,19 @@ return {
         'L3MON4D3/LuaSnip',
         version = '2.*',
         build = (function()
-          -- Remove the below condition to re-enable on windows.
           if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
             return
           end
           return 'make install_jsregexp'
         end)(),
-        dependencies = {},
+        dependencies = {
+          {
+            'rafamadriz/friendly-snippets',
+            config = function()
+              require('luasnip.loaders.from_vscode').lazy_load()
+            end,
+          },
+        },
         opts = {},
       },
       'folke/lazydev.nvim',
@@ -254,11 +259,9 @@ return {
       keymap = {
         preset = 'default',
       },
-
       appearance = {
         nerd_font_variant = 'mono',
       },
-
       completion = {
         documentation = { auto_show = true, auto_show_delay_ms = 500 },
         menu = {
@@ -270,7 +273,6 @@ return {
           },
         },
       },
-
       sources = {
         default = { 'lsp', 'path', 'snippets', 'lazydev' },
         per_filetype = {
