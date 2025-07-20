@@ -174,7 +174,11 @@ return {
             },
           },
         },
+      gopls = {},
+      prettier = {},
+
       }
+
 
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
@@ -202,90 +206,5 @@ return {
         vim.lsp.config(server_name, config)
       end
     end,
-  },
-  {
-    'stevearc/conform.nvim',
-    event = { 'BufWritePre' },
-    cmd = { 'ConformInfo' },
-    keys = {
-      {
-        '<leader>f',
-        function()
-          require('conform').format { async = true, lsp_format = 'fallback' }
-        end,
-        mode = '',
-        desc = '[F]ormat buffer',
-      },
-    },
-    opts = {
-      notify_on_error = false,
-      formatters_by_ft = {
-        lua = { 'stylua' },
-        python = { 'ruff_fix', 'ruff_format' },
-        nix = { 'alejandra' },
-        -- sql = { 'sql-formater' },
-      },
-    },
-  },
-  {
-    'saghen/blink.cmp',
-    event = 'VimEnter',
-    version = '1.*',
-    dependencies = {
-      {
-        'L3MON4D3/LuaSnip',
-        version = '2.*',
-        build = (function()
-          if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
-            return
-          end
-          return 'make install_jsregexp'
-        end)(),
-        dependencies = {
-          {
-            'rafamadriz/friendly-snippets',
-            config = function()
-              require('luasnip.loaders.from_vscode').lazy_load()
-            end,
-          },
-        },
-        opts = {},
-      },
-      'folke/lazydev.nvim',
-    },
-    --- @module 'blink.cmp'
-    --- @type blink.cmp.Config
-    opts = {
-      keymap = {
-        preset = 'default',
-      },
-      appearance = {
-        nerd_font_variant = 'mono',
-      },
-      completion = {
-        documentation = { auto_show = true, auto_show_delay_ms = 500 },
-        menu = {
-          draw = {
-            columns = {
-              { 'label', 'label_description', gap = 1 },
-              { 'kind_icon', 'kind', gap = 1 },
-            },
-          },
-        },
-      },
-      sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev' },
-        per_filetype = {
-          sql = { 'snippets', 'dadbod', 'buffer' },
-        },
-        providers = {
-          lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
-          dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
-        },
-      },
-      snippets = { preset = 'luasnip' },
-      fuzzy = { implementation = 'lua' },
-      signature = { enabled = true },
-    },
-  },
+  }
 }
