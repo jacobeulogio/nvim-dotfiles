@@ -2,7 +2,7 @@ return {
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
   { 'nmac427/guess-indent.nvim', opts = {} },
   { 'brenoprata10/nvim-highlight-colors', opts = {} },
-  { 'dariuscorvus/tree-sitter-language-injection.nvim', opts = {} },
+  -- { 'dariuscorvus/tree-sitter-language-injection.nvim', opts = {} },
   {
     'hat0uma/csvview.nvim',
     ---@module "csvview"
