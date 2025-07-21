@@ -87,6 +87,9 @@ vim.opt.diffopt:append 'linematch:60'
 vim.opt.redrawtime = 10000
 vim.opt.maxmempattern = 20000
 
+-- For persistent Registers
+-- vim.opt.shada = { '!', '%', "'100", '"1000', ':<1000', '/<1000', 'n~/.local/share/nvim/shada/main.shada' }
+
 -- Create undo directory if it doesn't exist
 local undodir = vim.fn.expand '~/.vim/undodir'
 if vim.fn.isdirectory(undodir) == 0 then
