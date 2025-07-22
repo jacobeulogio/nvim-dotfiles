@@ -95,3 +95,6 @@ local undodir = vim.fn.expand '~/.vim/undodir'
 if vim.fn.isdirectory(undodir) == 0 then
   vim.fn.mkdir(undodir, 'p')
 end
+
+-- Enable code highlighting for markdown files  
+vim.cmd("let g:markdown_fenced_languages = ['html', 'javascript', 'typescript', 'vim', 'lua', 'css']")
