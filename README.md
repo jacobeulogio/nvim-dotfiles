@@ -24,7 +24,8 @@ My personal neovim configuration based on [kickstart.nvim](https://github.com/nv
 
 ## Installation
 
-<summary>Linux</summary>
+Linux
+
 
 ```sh
 
@@ -32,7 +33,7 @@ git clone https://github.com/jacobeulogio/nvim-dotfiles.git "${XDG_CONFIG_HOME:-
 
 ```
 
-<details><summary>WSL (Windows Subsystem for Linux)</summary>
+WSL
 
 ```
 
@@ -44,4 +45,3 @@ sudo apt install make gcc ripgrep unzip git xclip neovim
 
 ```
 
-</details>
