@@ -36,12 +36,10 @@ git clone https://github.com/jacobeulogio/nvim-dotfiles.git "${XDG_CONFIG_HOME:-
 WSL
 
 ```
-
 wsl --install
 wsl
 sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update
 sudo apt install make gcc ripgrep unzip git xclip neovim
-
 ```
 
