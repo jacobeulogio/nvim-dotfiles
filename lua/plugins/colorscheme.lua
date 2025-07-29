@@ -19,11 +19,11 @@ return {
         keywordStyle = { italic = false },
         overrides = function(colors)
           local theme = colors.theme
+          local palette = colors.palette
           return {
             ['@variable.builtin'] = { italic = false },
-            -- String = { fg = '#625e5a' },
-            -- String = { fg = '#908A7B' },
             String = { fg = '#8C907B' },
+            IncSearch = { bg = palette.boatYellow2 },
             MiniStatuslineDevinfo = { bg = theme.ui.bg_dim },
             MiniStatuslineFileinfo = { bg = theme.ui.bg_dim },
             MiniStatuslineFilename = { bg = theme.ui.bg_dim },
