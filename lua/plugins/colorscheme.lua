@@ -23,7 +23,7 @@ return {
           return {
             ['@variable.builtin'] = { italic = false },
             String = { fg = '#8C907B' },
-            IncSearch = { bg = '#8E9092'},
+            IncSearch = { bg = '#4e4e4e', fg='None'},
             MiniStatuslineDevinfo = { bg = theme.ui.bg_dim },
             MiniStatuslineFileinfo = { bg = theme.ui.bg_dim },
             MiniStatuslineFilename = { bg = theme.ui.bg_dim },
@@ -53,7 +53,7 @@ return {
             TelescopeResultsBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_dim },
             TelescopePreviewNormal = { bg = theme.ui.bg_dim },
             TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
-            Visual = { bg = '#303030' },
+            Visual = { bg = '#262626' },
             -- ColorColumn = { bg = '#272727' },
             -- IncSearch = { bg = '#8E9092' },
           }
