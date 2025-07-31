@@ -33,6 +33,7 @@ return {
             MiniStatuslineModeReplace = {fg = 'None', bg = theme.ui.bg_p1 },
             MiniStatuslineModeCommand = {fg = 'None', bg = theme.ui.bg_p1 },
             Pmenu = { bg = '#1c1c1c' },
+            PmenuExtra = { bg = '#1c1c1c' },
             PmenuSel = { bg = '#3a3a3a' },
             PmenuThumb = { bg = '#8E9092' },
             PmenuSbar = { bg = '#1c1c1c' },
