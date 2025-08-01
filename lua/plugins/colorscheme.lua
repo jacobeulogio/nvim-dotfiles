@@ -35,6 +35,8 @@ return {
             Pmenu = { bg = '#1c1c1c' },
             PmenuExtra = { bg = '#1c1c1c' },
             PmenuSel = { bg = '#3a3a3a' },
+            PmenuKind = { bg = '#1c1c1c' },
+            PmenuKindSel = { bg = '#3a3a3a' },
             PmenuThumb = { bg = '#8E9092' },
             PmenuSbar = { bg = '#1c1c1c' },
             WinSeparator = { fg = '#272727'},
