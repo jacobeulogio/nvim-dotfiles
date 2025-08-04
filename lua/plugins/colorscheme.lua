@@ -57,6 +57,7 @@ return {
             TelescopePreviewNormal = { bg = theme.ui.bg_dim },
             TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
             Visual = { bg = '#262626' },
+            MatchParen = { bg = '#303030', fg = 'None' },
             -- ColorColumn = { bg = '#272727' },
             -- IncSearch = { bg = '#8E9092' },
           }
