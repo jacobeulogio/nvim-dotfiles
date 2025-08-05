@@ -11,7 +11,6 @@ return {
         return '%2l:%-2v │ %L'
       end
 
-      -- require('mini.git').setup()
       require('mini.splitjoin').setup {
         mappings = {
           toggle = '<leader>m',

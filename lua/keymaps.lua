@@ -11,6 +11,7 @@ vim.keymap.set({ "n", "v" }, "L", '20l', { desc = "move 20 columns to the right"
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
+-- Esc
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<C-c>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })

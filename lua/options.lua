@@ -28,8 +28,8 @@ vim.opt.signcolumn = 'yes'
 vim.opt.termguicolors = true
 vim.opt.laststatus = 3
 vim.opt.fillchars:append {
-  vert = '│', -- Vertical separator
-  horiz = '─', -- Horizontal separator
+  vert = '│',
+  horiz = '─',
 }
 vim.opt.inccommand = 'split'
 

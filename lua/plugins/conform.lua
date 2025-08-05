@@ -15,10 +15,13 @@ return {
   opts = {
     notify_on_error = false,
     formatters_by_ft = {
+
       lua = { 'stylua' },
+      rust = { 'rustfmt' },
       python = { 'ruff_fix', 'ruff_format' },
       nix = { 'alejandra' },
       go = { 'goimports', 'gofmt' },
+
       javascript = { 'prettier' },
       typescript = { 'prettier' },
       html = { 'prettier' },

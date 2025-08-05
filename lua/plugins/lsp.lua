@@ -11,9 +11,6 @@ return {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      -- { 'mason-org/mason.nvim', opts = {} },
-      -- { 'mason-org/mason-lspconfig.nvim', opts = {} },
-      -- 'WhoIsSethDaniel/mason-tool-installer.nvim',
       { 'j-hui/fidget.nvim', opts = {} },
       'saghen/blink.cmp',
     },
@@ -35,7 +32,6 @@ return {
           map('gO', require('telescope.builtin').lsp_document_symbols, 'Open Document Symbols')
           map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
           map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
-
         end,
       })
 
@@ -108,30 +104,29 @@ return {
           },
         },
 
-      gopls = {},
-      prettier = {},
-      rust_analyzer = {},
-      alejandra = {},
-      nil_ls = {},
-
+        gopls = {},
+        prettier = {},
+        rust_analyzer = {},
+        alejandra = {},
+        nil_ls = {},
       }
-
-      -- ---@type MasonLspconfigSettings
-      -- ---@diagnostic disable-next-line: missing-fields
-      -- require('mason-lspconfig').setup {
-      --   automatic_enable = vim.tbl_keys(servers or {}),
-      --   handlers = {
-      --     function(server_name)
-      --       local server = servers[server_name] or {}
-      --       server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-      --     end,
-      --   },
-      -- }
 
       for server_name, config in pairs(servers) do
         vim.lsp.enable(server_name)
         vim.lsp.config(server_name, config)
       end
     end,
-  }
+  },
 }
+
+-- ---@type MasonLspconfigSettings
+-- ---@diagnostic disable-next-line: missing-fields
+-- require('mason-lspconfig').setup {
+--   automatic_enable = vim.tbl_keys(servers or {}),
+--   handlers = {
+--     function(server_name)
+--       local server = servers[server_name] or {}
+--       server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+--     end,
+--   },
+-- }

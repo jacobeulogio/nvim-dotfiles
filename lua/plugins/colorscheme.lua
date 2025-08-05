@@ -9,10 +9,6 @@ return {
           theme = {
             all = { ui = { bg_gutter = 'none' } }
           },
-          palette = {
-            -- dragonGreen2 = '#625e5a',
-            -- dragonRed = '#D6865E',
-          },
         },
         commentStyle = { italic = false },
         functionStyle = {},
@@ -45,7 +41,6 @@ return {
             LspReferenceText = { bg = '#303030' },
             LspReferenceWrite = { bg = '#303030', underline = false },
             NormalFloat = { bg = theme.ui.bg_dim },
-            -- NormalFloat = { bg = '#1c1c1c' },
             FloatFooter = { bg = theme.ui.bg_dim },
             FloatTitle = { bg = theme.ui.bg_dim },
             FloatBorder = { bg = theme.ui.bg_dim },
@@ -58,8 +53,6 @@ return {
             TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
             Visual = { bg = '#262626' },
             MatchParen = { bg = '#303030', fg = 'None' },
-            -- ColorColumn = { bg = '#272727' },
-            -- IncSearch = { bg = '#8E9092' },
           }
         end,
       }
