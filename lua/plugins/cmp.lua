@@ -1,7 +1,7 @@
 return {
   'saghen/blink.cmp',
   event = 'VimEnter',
-  version = '1.*',
+  version = '*',
   dependencies = {
     {
       'L3MON4D3/LuaSnip',
