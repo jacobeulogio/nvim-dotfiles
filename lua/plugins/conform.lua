@@ -22,6 +22,9 @@ return {
       nix = { 'alejandra' },
       go = { 'goimports', 'gofmt' },
 
+      bash = { 'beautysh' },
+      sh = { 'beautysh' },
+
       javascript = { 'prettier' },
       typescript = { 'prettier' },
       html = { 'prettier' },
@@ -29,6 +32,7 @@ return {
       json = { 'prettier' },
       yaml = { 'prettier' },
       markdown = { 'prettier' },
+
       -- sql = { 'sql-formater' },
     },
   },

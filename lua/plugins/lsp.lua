@@ -109,6 +109,7 @@ return {
         rust_analyzer = {},
         alejandra = {},
         nil_ls = {},
+        beautysh = {},
       }
 
       for server_name, config in pairs(servers) do
@@ -118,15 +119,3 @@ return {
     end,
   },
 }
-
--- ---@type MasonLspconfigSettings
--- ---@diagnostic disable-next-line: missing-fields
--- require('mason-lspconfig').setup {
---   automatic_enable = vim.tbl_keys(servers or {}),
---   handlers = {
---     function(server_name)
---       local server = servers[server_name] or {}
---       server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
---     end,
---   },
--- }
