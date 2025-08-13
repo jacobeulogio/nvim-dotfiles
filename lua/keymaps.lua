@@ -23,16 +23,14 @@ vim.keymap.set({ 'n', 't' }, '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the 
 vim.keymap.set({ 'n', 't' }, '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set({ 'n', 't' }, '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set({ 'n', 't' }, '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-vim.keymap.set('n', '<C-w>h', ':vertical resize -5<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-w>l', ':vertical resize +5<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-w>k', ':resize +5<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-w>j', ':resize -5<CR>', { noremap = true, silent = true })
 
 -- netrw
 vim.keymap.set({ 'n' }, '<leader>n', ':25Vex<CR>', { desc = 'Open Netrw' })
 
 -- Diagnostics
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+-- Diagnostics Toggling
 vim.g['diagnostics_active'] = true
 function Toggle_diagnostics()
   if vim.g.diagnostics_active then

@@ -17,13 +17,12 @@ vim.g.netrw_liststyle = 3
 vim.g.netrw_browse_split = 4
 vim.g.netrw_cursor = 1
 
-vim.api.nvim_create_autocmd("VimEnter", {
+-- Relative Numbers in netrw
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "netrw",
   callback = function()
-    -- Only if no files were opened
-    if vim.fn.argc() == 0 then
-      vim.cmd("25Vexplore")
-      vim.cmd("wincmd p")  -- Move focus to main window
-    end
+    vim.opt_local.relativenumber = true
+    vim.opt_local.number = true
   end,
 })
 
@@ -72,9 +71,7 @@ vim.opt.hidden = true
 vim.opt.errorbells = false
 vim.opt.backspace = 'indent,eol,start'
 vim.opt.autochdir = false
-vim.opt.iskeyword:append '-'
 vim.opt.path:append '**'
-vim.opt.selection = 'inclusive'
 vim.opt.mouse = 'a'
 vim.opt.modifiable = true
 vim.opt.encoding = 'UTF-8'
@@ -102,9 +99,6 @@ vim.opt.diffopt:append 'linematch:60'
 -- Performance improvements
 vim.opt.redrawtime = 10000
 vim.opt.maxmempattern = 20000
-
--- For persistent Registers
--- vim.opt.shada = { '!', '%', "'100", '"1000', ':<1000', '/<1000', 'n~/.local/share/nvim/shada/main.shada' }
 
 -- Create undo directory if it doesn't exist
 local undodir = vim.fn.expand '~/.vim/undodir'
