@@ -28,6 +28,9 @@ vim.keymap.set('n', '<C-w>l', ':vertical resize +5<CR>', { noremap = true, silen
 vim.keymap.set('n', '<C-w>k', ':resize +5<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-w>j', ':resize -5<CR>', { noremap = true, silent = true })
 
+-- netrw
+vim.keymap.set({ 'n' }, '<leader>n', ':25Vex<CR>', { desc = 'Open Netrw' })
+
 -- Diagnostics
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 vim.g['diagnostics_active'] = true

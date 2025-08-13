@@ -3,7 +3,7 @@ return {
     lazy = false,
     opts = {
       file_manager = 'yazi',
-      replace_netrw = true,
+      -- replace_netrw = true,
       enable_cmds = true,
       keybindings = {
         ['<ESC>'] = 'q',

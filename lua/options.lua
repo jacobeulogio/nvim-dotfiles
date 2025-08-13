@@ -11,6 +11,22 @@ vim.opt.cursorline = false
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+-- Netrw
+vim.g.netrw_banner = 0
+vim.g.netrw_liststyle = 3
+vim.g.netrw_browse_split = 4
+vim.g.netrw_cursor = 1
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    -- Only if no files were opened
+    if vim.fn.argc() == 0 then
+      vim.cmd("25Vexplore")
+      vim.cmd("wincmd p")  -- Move focus to main window
+    end
+  end,
+})
+
 -- Indentation
 vim.opt.shiftwidth = 4
 vim.opt.smartindent = true
