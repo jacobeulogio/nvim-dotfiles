@@ -46,3 +46,6 @@ vim.keymap.set('n', '<leader>td', Toggle_diagnostics, { noremap = true, silent =
 -- Signature Help
 vim.keymap.set('i', '<C-k>', function() require('blink.cmp').signature_help() end, { desc = 'Signature Help' })
 
+-- Inlay Hints
+vim.keymap.set('n', '<leader>th', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end
+  , { desc = 'LSP: Toggle Inlay Hints' })
