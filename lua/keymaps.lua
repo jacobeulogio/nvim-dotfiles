@@ -24,8 +24,8 @@ vim.keymap.set({ 'n', 't' }, '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the 
 vim.keymap.set({ 'n', 't' }, '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set({ 'n', 't' }, '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- netrw
-vim.keymap.set({ 'n' }, '<leader>n', ':25Vex<CR>', { desc = 'Open Netrw' })
+-- Netrw
+vim.keymap.set({ 'n' }, '<leader>n', ':20Vex<CR>', { desc = 'Open Netrw' })
 
 -- Diagnostics
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -49,3 +49,5 @@ vim.keymap.set('i', '<C-k>', function() require('blink.cmp').signature_help() en
 -- Inlay Hints
 vim.keymap.set('n', '<leader>th', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end
   , { desc = 'LSP: Toggle Inlay Hints' })
+
+vim.keymap.set('n', '<leader>tw', ':se wrap!<CR>', { desc = 'Toggle line wrapping' })
