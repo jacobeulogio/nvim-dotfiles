@@ -131,7 +131,9 @@ return {
         alejandra = {},
         nil_ls = {},
         beautysh = {},
+        terraform_ls = {},
       }
+
 
       for server_name, config in pairs(servers) do
         vim.lsp.enable(server_name)

@@ -18,13 +18,13 @@ vim.g.netrw_browse_split = 4
 vim.g.netrw_cursor = 1
 
 -- Relative Numbers in netrw
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "netrw",
-  callback = function()
-    vim.opt_local.relativenumber = true
-    vim.opt_local.number = true
-  end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "netrw",
+--   callback = function()
+--     vim.opt_local.relativenumber = true
+--     vim.opt_local.number = true
+--   end,
+-- })
 
 -- Indentation
 vim.opt.shiftwidth = 4

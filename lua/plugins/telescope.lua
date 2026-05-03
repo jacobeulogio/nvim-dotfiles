@@ -1,6 +1,8 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
+
+    enabled = true,
     event = 'VimEnter',
     dependencies = {
       'nvim-lua/plenary.nvim',
